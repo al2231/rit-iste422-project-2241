@@ -1,0 +1,16 @@
+ALL : clean build test run
+	@echo Build Complete!
+
+clean :
+	rm -f *.class
+
+build :
+	javac -classpath .:lib/junit-4.12.jar:lib/hamcrest-core-1.3.jar -d build src/main/java/*.java src/test/java/*.java
+	@if [ $$? -ne 0 ]; then echo "BUILD FAILED!"; exit 1; fi
+
+test : build
+	java -cp .:lib/junit-4.12.jar:lib/hamcrest-core-1.3.jar:build org.junit.runner.JUnitCore EdgeConnectorTest
+	@if [ $$? -ne 0 ]; then echo "TESTS FAILED!"; exit 1; fi
+
+run : build
+	java -classpath .:build:src/main/java RunEdgeConvert
