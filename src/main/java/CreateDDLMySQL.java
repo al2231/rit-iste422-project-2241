@@ -16,7 +16,7 @@ public class CreateDDLMySQL extends EdgeConvertCreateDDL {
    protected String[] strDataType = {"VARCHAR", "BOOL", "INT", "DOUBLE"};
    protected StringBuffer sb;
 
-   private static final Logger logger = LogManager.getLogger(CreateDDLMySQL.class.getName());
+   private final Logger logger = LogManager.getLogger(CreateDDLMySQL.class.getName());
 
    public CreateDDLMySQL(EdgeTable[] inputTables, EdgeField[] inputFields) {
       super(inputTables, inputFields);

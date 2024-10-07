@@ -8,7 +8,7 @@ public class EdgeConnector {
    private String endStyle1, endStyle2;
    private boolean isEP1Field, isEP2Field, isEP1Table, isEP2Table;
 
-   private static final Logger logger = LogManager.getLogger(EdgeConnector.class.getName());
+   private final Logger logger = LogManager.getLogger(EdgeConnector.class.getName());
    
    public EdgeConnector(String inputString) {
       StringTokenizer st = new StringTokenizer(inputString, EdgeConvertFileParser.DELIM);
