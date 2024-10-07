@@ -6,6 +6,9 @@ import java.io.*;
 import java.util.*;
 import java.util.logging.*;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class CreateDDLMySQL extends EdgeConvertCreateDDL {
 
    protected String databaseName;
@@ -13,11 +16,12 @@ public class CreateDDLMySQL extends EdgeConvertCreateDDL {
    protected String[] strDataType = {"VARCHAR", "BOOL", "INT", "DOUBLE"};
    protected StringBuffer sb;
 
-   private static final Logger logger = Logger.getLogger(CreateDDLMySQL.class.getName());
+   private static final Logger logger = LogManager.getLogger(CreateDDLMySQL.class.getName());
 
    public CreateDDLMySQL(EdgeTable[] inputTables, EdgeField[] inputFields) {
       super(inputTables, inputFields);
       sb = new StringBuffer();
+      System.out.println("hey");
       logger.info("CreateDDLMySQL constructor called with tables and fields");
    } //CreateDDLMySQL(EdgeTable[], EdgeField[])
    
@@ -119,7 +123,7 @@ public class CreateDDLMySQL extends EdgeConvertCreateDDL {
    }
 
    protected int convertStrBooleanToInt(String input) { //MySQL uses '1' and '0' for boolean types
-      logger.fine("Converting string boolean to int: " + input);
+      //logger.fine("Converting string boolean to int: " + input);
       if (input.equals("true")) {
          return 1;
       } else {
@@ -146,7 +150,7 @@ public class CreateDDLMySQL extends EdgeConvertCreateDDL {
          }
          if (databaseName.equals("")) {
             JOptionPane.showMessageDialog(null, "You must select a name for your database.");
-            logger.warning("User provided an empty database name");
+            //logger.warning("User provided an empty database name");
          }
       } while (databaseName.equals(""));
       return databaseName;

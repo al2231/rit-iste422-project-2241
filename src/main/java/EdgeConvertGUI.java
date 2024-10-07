@@ -9,7 +9,12 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 import java.lang.reflect.*;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class EdgeConvertGUI {
+
+   private static final Logger logger = LogManager.getLogger(EdgeConvertGUI.class.getName());
    
    public static final int HORIZ_SIZE = 635;
    public static final int VERT_SIZE = 400;
@@ -81,6 +86,7 @@ public class EdgeConvertGUI {
    public void showGUI() {
       try {
          UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName()); //use the OS native LAF, as opposed to default Java LAF
+         logger.info("here");
       } catch (Exception e) {
          System.out.println("Error setting native LAF: " + e);
       }
