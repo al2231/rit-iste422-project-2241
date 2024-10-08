@@ -5,6 +5,9 @@ import javax.swing.event.*;
 import java.io.*;
 import java.util.*;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public abstract class EdgeConvertCreateDDL {
    static String[] products = {"MySQL"};
    protected EdgeTable[] tables; //master copy of EdgeTable objects
@@ -13,15 +16,19 @@ public abstract class EdgeConvertCreateDDL {
    protected int maxBound;
    protected StringBuffer sb;
    protected int selected;
+
+   private final Logger logger = LogManager.getLogger(CreateDDLMySQL.class.getName());
    
    public EdgeConvertCreateDDL(EdgeTable[] tables, EdgeField[] fields) {
       this.tables = tables;
       this.fields = fields;
       initialize();
+
+      logger.info("EdgeConvertCreateDDL constructor called with EdgeTable[] and EdgeField[]");
    } //EdgeConvertCreateDDL(EdgeTable[], EdgeField[])
    
    public EdgeConvertCreateDDL() { //default constructor with empty arg list for to allow output dir to be set before there are table and field objects
-      
+      logger.info("EdgeConvertCreateDDL default constructor called");
    } //EdgeConvertCreateDDL()
 
    public void initialize() {
