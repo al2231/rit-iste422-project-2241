@@ -17,7 +17,7 @@ public abstract class EdgeConvertCreateDDL {
    protected StringBuffer sb;
    protected int selected;
 
-   private final Logger logger = LogManager.getLogger(CreateDDLMySQL.class.getName());
+   private final Logger logger = LogManager.getLogger(EdgeConvertCreateDDL.class.getName());
    
    public EdgeConvertCreateDDL(EdgeTable[] tables, EdgeField[] fields) {
       this.tables = tables;
