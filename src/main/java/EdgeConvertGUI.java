@@ -554,6 +554,7 @@ public class EdgeConvertGUI {
    } //createDTScreen
 
    public void createDRScreen() {
+      logger.info("Creating DR screen");
       //create Define Relations screen
       jfDR = new JFrame(DEFINE_RELATIONS);
       jfDR.setSize(HORIZ_SIZE, VERT_SIZE);
@@ -563,46 +564,68 @@ public class EdgeConvertGUI {
       jfDR.getContentPane().setLayout(new BorderLayout());
 
       //setup menubars and menus
+      logger.debug("Setting up menu bar");
       jmbDRMenuBar = new JMenuBar();
       jfDR.setJMenuBar(jmbDRMenuBar);
+
       jmDRFile = new JMenu("File");
       jmDRFile.setMnemonic(KeyEvent.VK_F);
       jmbDRMenuBar.add(jmDRFile);
+      logger.debug("Added File menu");
+
       jmiDROpenEdge = new JMenuItem("Open Edge File");
       jmiDROpenEdge.setMnemonic(KeyEvent.VK_E);
       jmiDROpenEdge.addActionListener(menuListener);
+      logger.debug("Added Open Edge File menu");
+
       jmiDROpenSave = new JMenuItem("Open Save File");
       jmiDROpenSave.setMnemonic(KeyEvent.VK_V);
       jmiDROpenSave.addActionListener(menuListener);
+      logger.debug("Added Open Save File menu");
+
       jmiDRSave = new JMenuItem("Save");
       jmiDRSave.setMnemonic(KeyEvent.VK_S);
       jmiDRSave.setEnabled(false);
       jmiDRSave.addActionListener(menuListener);
+      logger.debug("Added Save menu");
+
       jmiDRSaveAs = new JMenuItem("Save As...");
       jmiDRSaveAs.setMnemonic(KeyEvent.VK_A);
       jmiDRSaveAs.setEnabled(false);
       jmiDRSaveAs.addActionListener(menuListener);
+      logger.debug("Added Save As... menu");
+
       jmiDRExit = new JMenuItem("Exit");
       jmiDRExit.setMnemonic(KeyEvent.VK_X);
       jmiDRExit.addActionListener(menuListener);
+      logger.debug("Added Exit menu");
+
       jmDRFile.add(jmiDROpenEdge);
       jmDRFile.add(jmiDROpenSave);
       jmDRFile.add(jmiDRSave);
       jmDRFile.add(jmiDRSaveAs);
       jmDRFile.add(jmiDRExit);
+      logger.debug("Finalized DR File menu setup");
 
       jmDROptions = new JMenu("Options");
       jmDROptions.setMnemonic(KeyEvent.VK_O);
       jmbDRMenuBar.add(jmDROptions);
+      logger.debug("Added Options menu");
+
       jmiDROptionsOutputLocation = new JMenuItem("Set Output File Definition Location");
       jmiDROptionsOutputLocation.setMnemonic(KeyEvent.VK_S);
       jmiDROptionsOutputLocation.addActionListener(menuListener);
+      logger.debug("Added Set Output File Definition Location menu");
+
       jmiDROptionsShowProducts = new JMenuItem("Show Database Products Available");
       jmiDROptionsShowProducts.setMnemonic(KeyEvent.VK_H);
       jmiDROptionsShowProducts.setEnabled(false);
       jmiDROptionsShowProducts.addActionListener(menuListener);
+      logger.debug("Added Show Database Products Available menu");
+
       jmDROptions.add(jmiDROptionsOutputLocation);
       jmDROptions.add(jmiDROptionsShowProducts);
+      logger.debug("Finalized DR Options menu setup");
 
       jmDRHelp = new JMenu("Help");
       jmDRHelp.setMnemonic(KeyEvent.VK_H);
@@ -611,6 +634,7 @@ public class EdgeConvertGUI {
       jmiDRHelpAbout.setMnemonic(KeyEvent.VK_A);
       jmiDRHelpAbout.addActionListener(menuListener);
       jmDRHelp.add(jmiDRHelpAbout);
+      logger.debug("Finalized Help menu setup");
 
       jpDRCenter = new JPanel(new GridLayout(2, 2));
       jpDRCenter1 = new JPanel(new BorderLayout());
@@ -624,9 +648,12 @@ public class EdgeConvertGUI {
          new ListSelectionListener() {
             public void valueChanged(ListSelectionEvent lse)  {
                int selIndex = jlDRTablesRelations.getSelectedIndex();
+               logger.debug("Selected index in TablesRelations: " + selIndex);
                if (selIndex >= 0) {
                   String selText = dlmDRTablesRelations.getElementAt(selIndex).toString();
+                  logger.info("Selected table relation: " + selText);
                   setCurrentDRTable1(selText);
+
                   int[] currentNativeFields, currentRelatedTables, currentRelatedFields;
                   currentNativeFields = currentDRTable1.getNativeFieldsArray();
                   currentRelatedTables = currentDRTable1.getRelatedTablesArray();
@@ -636,10 +663,14 @@ public class EdgeConvertGUI {
                   dlmDRFieldsTablesRelations.removeAllElements();
                   dlmDRTablesRelatedTo.removeAllElements();
                   dlmDRFieldsTablesRelatedTo.removeAllElements();
+                  logger.debug("clearSelection and removeAllElements");
+
                   for (int fIndex = 0; fIndex < currentNativeFields.length; fIndex++) {
+                     logger.trace("populating FieldsTablesRelations: " + getFieldName(currentNativeFields[fIndex]));
                      dlmDRFieldsTablesRelations.addElement(getFieldName(currentNativeFields[fIndex]));
                   }
                   for (int rIndex = 0; rIndex < currentRelatedTables.length; rIndex++) {
+                     logger.trace("populating TablesRelatedTo: " + getFieldName(currentNativeFields[rIndex]));
                      dlmDRTablesRelatedTo.addElement(getTableName(currentRelatedTables[rIndex]));
                   }
                }
@@ -653,16 +684,20 @@ public class EdgeConvertGUI {
          new ListSelectionListener() {
             public void valueChanged(ListSelectionEvent lse)  {
                int selIndex = jlDRFieldsTablesRelations.getSelectedIndex();
+               logger.debug("Selected index in FieldsTablesRelations: " + selIndex);
                if (selIndex >= 0) {
                   String selText = dlmDRFieldsTablesRelations.getElementAt(selIndex).toString();
+                  logger.info("Selected field in table relation: " + selText);
                   setCurrentDRField1(selText);
                   if (currentDRField1.getFieldBound() == 0) {
                      jlDRTablesRelatedTo.clearSelection();
                      jlDRFieldsTablesRelatedTo.clearSelection();
                      dlmDRFieldsTablesRelatedTo.removeAllElements();
+                     logger.debug("currentDRFieldBound == 0, clear and remove");
                   } else {
                      jlDRTablesRelatedTo.setSelectedValue(getTableName(currentDRField1.getTableBound()), true);
                      jlDRFieldsTablesRelatedTo.setSelectedValue(getFieldName(currentDRField1.getFieldBound()), true);
+                     logger.debug("Set TablesRelations and FieldsTablesRelations");
                   }
                }
             }
@@ -675,12 +710,15 @@ public class EdgeConvertGUI {
          new ListSelectionListener() {
             public void valueChanged(ListSelectionEvent lse)  {
                int selIndex = jlDRTablesRelatedTo.getSelectedIndex();
+               logger.debug("Selected index in TablesRelatedTo: " + selIndex);
                if (selIndex >= 0) {
                   String selText = dlmDRTablesRelatedTo.getElementAt(selIndex).toString();
+                  logger.info("Selected related table: " + selText);
                   setCurrentDRTable2(selText);
                   int[] currentNativeFields = currentDRTable2.getNativeFieldsArray();
                   dlmDRFieldsTablesRelatedTo.removeAllElements();
                   for (int fIndex = 0; fIndex < currentNativeFields.length; fIndex++) {
+                     logger.trace("populating FieldsTablesRelatedTo: " + getFieldName(currentNativeFields[fIndex]));
                      dlmDRFieldsTablesRelatedTo.addElement(getFieldName(currentNativeFields[fIndex]));
                   }
                }
@@ -694,12 +732,15 @@ public class EdgeConvertGUI {
          new ListSelectionListener() {
             public void valueChanged(ListSelectionEvent lse)  {
                int selIndex = jlDRFieldsTablesRelatedTo.getSelectedIndex();
+               logger.debug("Selected index in FieldsTableRelatedTo: " + selIndex);
                if (selIndex >= 0) {
                   String selText = dlmDRFieldsTablesRelatedTo.getElementAt(selIndex).toString();
+                  logger.info("Selected field in related table: " + selText);
                   setCurrentDRField2(selText);
                   jbDRBindRelation.setEnabled(true);
                } else {
                   jbDRBindRelation.setEnabled(false);
+                  logger.debug("selIndex less than 0, BindRelation false");
                }
             }
          }
@@ -725,6 +766,7 @@ public class EdgeConvertGUI {
       jpDRCenter.add(jpDRCenter2);
       jpDRCenter.add(jpDRCenter3);
       jpDRCenter.add(jpDRCenter4);
+      logger.debug("Added components to jpDRCenter");
       jfDR.getContentPane().add(jpDRCenter, BorderLayout.CENTER);
       jpDRBottom = new JPanel(new GridLayout(1, 3));
 
@@ -732,6 +774,7 @@ public class EdgeConvertGUI {
       jbDRDefineTables.addActionListener(
          new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
+               logger.info("Define Tables button clicked, show Define Tables screen");
                jfDT.setVisible(true); //show the Define Tables screen
                jfDR.setVisible(false);
                clearDRControls();
@@ -746,6 +789,7 @@ public class EdgeConvertGUI {
       jbDRBindRelation.addActionListener(
          new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
+               logger.info("Bind/Unbind Relation button clicked");
                int nativeIndex = jlDRFieldsTablesRelations.getSelectedIndex();
                int relatedField = currentDRField2.getNumFigure();
                if (currentDRField1.getFieldBound() == relatedField) { //the selected fields are already bound to each other
@@ -753,6 +797,7 @@ public class EdgeConvertGUI {
                                                              currentDRField1.getName() + "?",
                                                              "Are you sure?", JOptionPane.YES_NO_OPTION);
                   if (answer == JOptionPane.YES_OPTION) {
+                     logger.info("Unbinding relation for field: " + currentDRField1.getName());
                      currentDRTable1.setRelatedField(nativeIndex, 0); //clear the related field
                      currentDRField1.setTableBound(0); //clear the bound table
                      currentDRField1.setFieldBound(0); //clear the bound field
@@ -765,12 +810,15 @@ public class EdgeConvertGUI {
                                                              currentDRField1.getName() + ", do you wish to overwrite it?",
                                                              "Are you sure?", JOptionPane.YES_NO_OPTION);
                   if (answer == JOptionPane.NO_OPTION || answer == JOptionPane.CLOSED_OPTION) {
+                     logger.debug("Revert selections to saved settings");
                      jlDRTablesRelatedTo.setSelectedValue(getTableName(currentDRField1.getTableBound()), true); //revert selections to saved settings
                      jlDRFieldsTablesRelatedTo.setSelectedValue(getFieldName(currentDRField1.getFieldBound()), true); //revert selections to saved settings
                      return;
                   }
+                  logger.warn("Field is already bound to different field");
                }
                if (currentDRField1.getDataType() != currentDRField2.getDataType()) {
+                  logger.error("Field datatype do not match. Unable to bind");
                   JOptionPane.showMessageDialog(null, "The datatypes of " + currentDRTable1.getName() + "." +
                                                 currentDRField1.getName() + " and " + currentDRTable2.getName() +
                                                 "." + currentDRField2.getName() + " do not match.  Unable to bind this relation.");
@@ -790,6 +838,7 @@ public class EdgeConvertGUI {
                JOptionPane.showMessageDialog(null, "Table " + currentDRTable1.getName() + ": native field " +
                                              currentDRField1.getName() + " bound to table " + currentDRTable2.getName() +
                                              " on field " + currentDRField2.getName());
+               logger.info("Successfully bound: " + currentDRField1.getName());
                dataSaved = false;
             }
          }
@@ -798,11 +847,13 @@ public class EdgeConvertGUI {
       jbDRCreateDDL = new JButton("Create DDL");
       jbDRCreateDDL.setEnabled(false);
       jbDRCreateDDL.addActionListener(createDDLListener);
+      logger.debug("Added Create DDL button");
 
       jpDRBottom.add(jbDRDefineTables);
       jpDRBottom.add(jbDRBindRelation);
       jpDRBottom.add(jbDRCreateDDL);
       jfDR.getContentPane().add(jpDRBottom, BorderLayout.SOUTH);
+      logger.info("Finalized DR Screen creation");
    } //createDRScreen
    
    public static void setReadSuccess(boolean value) {
