@@ -192,7 +192,7 @@ public class EdgeConvertFileParser {
          if (connectors[cIndex].getIsEP1Table() && connectors[cIndex].getIsEP2Table()) { //both endpoints are tables
             if ((connectors[cIndex].getEndStyle1().indexOf("many") >= 0) &&
                 (connectors[cIndex].getEndStyle2().indexOf("many") >= 0)) { //the connector represents a many-many relationship, implies lack of normalization
-               logger.warn("There is a many-many relationshhip between tables, which implies lack of normalization");
+               logger.warn("There is a many-many relationship between tables, which implies lack of normalization");
                JOptionPane.showMessageDialog(null, "There is a many-many relationship between tables\n\"" + tables[table1Index].getName() + "\" and \"" + tables[table2Index].getName() + "\"" + "\nPlease resolve this and try again.");
                EdgeConvertGUI.setReadSuccess(false); //this tells GUI not to populate JList components
                break; //stop processing list of Connectors
