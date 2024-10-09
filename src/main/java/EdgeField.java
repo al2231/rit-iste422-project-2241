@@ -11,6 +11,8 @@ public class EdgeField {
    public static final int VARCHAR_DEFAULT_LENGTH = 1;
    private static final Logger logger = LogManager.getLogger(EdgeField.class.getName());
    
+   private final Logger logger = LogManager.getLogger(EdgeConnector.class.getName());
+
    public EdgeField(String inputString) {
       StringTokenizer st = new StringTokenizer(inputString, EdgeConvertFileParser.DELIM);
       numFigure = Integer.parseInt(st.nextToken());
@@ -23,6 +25,7 @@ public class EdgeField {
       defaultValue = "";
       varcharValue = VARCHAR_DEFAULT_LENGTH;
       dataType = 0;
+
       logger.info("EdgeField constructor called with inputString");
    }
    
