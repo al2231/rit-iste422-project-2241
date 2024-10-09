@@ -1,10 +1,13 @@
 import java.util.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class EdgeTable {
    private int numFigure;
    private String name;
    private ArrayList alRelatedTables, alNativeFields;
    private int[] relatedTables, relatedFields, nativeFields;
+   private static final Logger logger = LogManager.getLogger(EdgeTable.class.getName());
    
    public EdgeTable(String inputString) {
       StringTokenizer st = new StringTokenizer(inputString, EdgeConvertFileParser.DELIM);
@@ -12,38 +15,47 @@ public class EdgeTable {
       name = st.nextToken();
       alRelatedTables = new ArrayList();
       alNativeFields = new ArrayList();
+      logger.info("EdgeTable constructor called with inputString");
    }
    
    public int getNumFigure() {
+      logger.info("EdgeTable getNumFigure: " + numFigure);
       return numFigure;
    }
    
    public String getName() {
+      logger.info("EdgeTable getName: " + name);
       return name;
    }
    
    public void addRelatedTable(int relatedTable) {
       alRelatedTables.add(new Integer(relatedTable));
+      logger.info("EdgeTable add a related table: " + relatedTable);
    }
    
    public int[] getRelatedTablesArray() {
+      logger.info("EdgeTable getRelatedTablesArray: " + relatedTables);
       return relatedTables;
    }
    
    public int[] getRelatedFieldsArray() {
+      logger.info("EdgeTable getRelatedFieldsArray: " + relatedFields);
       return relatedFields;
    }
    
    public void setRelatedField(int index, int relatedValue) {
       relatedFields[index] = relatedValue;
+      logger.info("EdgeTable setRelatedField at index " + index + ": " + relatedValue);
    }
    
    public int[] getNativeFieldsArray() {
+      logger.info("EdgeTable getNativeFieldsArray: " + nativeFields);
       return nativeFields;
    }
 
    public void addNativeField(int value) {
       alNativeFields.add(new Integer(value));
+      logger.info("EdgeTable add a native field: " + value);
    }
 
    public void moveFieldUp(int index) { //move the field closer to the beginning of the list
@@ -91,6 +103,7 @@ public class EdgeTable {
    }
 
    public String toString() {
+      logger.info("EdgeTable toString method");
       StringBuffer sb = new StringBuffer();
       sb.append("Table: " + numFigure + "\r\n");
       sb.append("{\r\n");
