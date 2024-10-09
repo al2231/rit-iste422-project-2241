@@ -2,6 +2,9 @@ import java.io.*;
 import java.util.*;
 import javax.swing.*;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class EdgeConvertFileParser {
    //private String filename = "test.edg";
    private File parseFile;
@@ -25,6 +28,7 @@ public class EdgeConvertFileParser {
    public static final String EDGE_ID = "EDGE Diagram File"; //first line of .edg files should be this
    public static final String SAVE_ID = "EdgeConvert Save File"; //first line of save files should be this
    public static final String DELIM = "|";
+   private static final Logger logger = LogManager.getLogger(EdgeField.class.getName());
    
    public EdgeConvertFileParser(File constructorFile) {
       numFigure = 0;
@@ -37,36 +41,49 @@ public class EdgeConvertFileParser {
       parseFile = constructorFile;
       numLine = 0;
       this.openFile(parseFile);
+
+      logger.info("EdgeConvertFileParser constructor called with constructorFile");
+
    }
 
    public void parseEdgeFile() throws IOException {
+      logger.info("Parsing edge diagram file");
       while ((currentLine = br.readLine()) != null) {
          currentLine = currentLine.trim();
          if (currentLine.startsWith("Figure ")) { //this is the start of a Figure entry
             numFigure = Integer.parseInt(currentLine.substring(currentLine.indexOf(" ") + 1)); //get the Figure number
             currentLine = br.readLine().trim(); // this should be "{"
             currentLine = br.readLine().trim();
+
+            logger.debug("Processing figure: "+numFigure);
+
             if (!currentLine.startsWith("Style")) { // this is to weed out other Figures, like Labels
+               logger.debug("Skipping figure");
                continue;
             } else {
                style = currentLine.substring(currentLine.indexOf("\"") + 1, currentLine.lastIndexOf("\"")); //get the Style parameter
                if (style.startsWith("Relation")) { //presence of Relations implies lack of normalization
+                  logger.warn("File contains relations, which means lack of normalization");
                   JOptionPane.showMessageDialog(null, "The Edge Diagrammer file\n" + parseFile + "\ncontains relations.  Please resolve them and try again.");
                   EdgeConvertGUI.setReadSuccess(false);
                   break;
                } 
                if (style.startsWith("Entity")) {
+                  logger.debug("Entity found");
                   isEntity = true;
                }
                if (style.startsWith("Attribute")) {
+                  logger.debug("Attribute found");
                   isAttribute = true;
                }
                if (!(isEntity || isAttribute)) { //these are the only Figures we're interested in
+                  logger.debug("Skipping non-entity/non-attribute figure");
                   continue;
                }
                currentLine = br.readLine().trim(); //this should be Text
                text = currentLine.substring(currentLine.indexOf("\"") + 1, currentLine.lastIndexOf("\"")).replaceAll(" ", ""); //get the Text parameter
                if (text.equals("")) {
+                  logger.warn("There are entites or attributes with blank names.");
                   JOptionPane.showMessageDialog(null, "There are entities or attributes with blank names in this diagram.\nPlease provide names for them and try again.");
                   EdgeConvertGUI.setReadSuccess(false);
                   break;
@@ -85,16 +102,19 @@ public class EdgeConvertFileParser {
                
                if (isEntity) { //create a new EdgeTable object and add it to the alTables ArrayList
                   if (isTableDup(text)) {
+                     logger.warn("There is a duplicate table: " + text);
                      JOptionPane.showMessageDialog(null, "There are multiple tables called " + text + " in this diagram.\nPlease rename all but one of them and try again.");
                      EdgeConvertGUI.setReadSuccess(false);
                      break;
                   }
                   alTables.add(new EdgeTable(numFigure + DELIM + text));
+                  logger.debug("Added a new table: " + text);
                }
                if (isAttribute) { //create a new EdgeField object and add it to the alFields ArrayList
                   tempField = new EdgeField(numFigure + DELIM + text);
                   tempField.setIsPrimaryKey(isUnderlined);
                   alFields.add(tempField);
+                  logger.debug("Added a new attribute: " + text);
                }
                //reset flags
                isEntity = false;
@@ -103,6 +123,7 @@ public class EdgeConvertFileParser {
             }
          } // if("Figure")
          if (currentLine.startsWith("Connector ")) { //this is the start of a Connector entry
+            logger.info("Processing connector");
             numConnector = Integer.parseInt(currentLine.substring(currentLine.indexOf(" ") + 1)); //get the Connector number
             currentLine = br.readLine().trim(); // this should be "{"
             currentLine = br.readLine().trim(); // not interested in Style
@@ -118,12 +139,14 @@ public class EdgeConvertFileParser {
             endStyle1 = currentLine.substring(currentLine.indexOf("\"") + 1, currentLine.lastIndexOf("\"")); //get the End1 parameter
             currentLine = br.readLine().trim(); // End2
             endStyle2 = currentLine.substring(currentLine.indexOf("\"") + 1, currentLine.lastIndexOf("\"")); //get the End2 parameter
+            logger.debug("Connector endpoints: " + endPoint1 + ", " + endPoint2);
 
             do { //advance to end of record
                currentLine = br.readLine().trim();
             } while (!currentLine.equals("}")); // this is the end of a Connector entry
             
             alConnectors.add(new EdgeConnector(numConnector + DELIM + endPoint1 + DELIM + endPoint2 + DELIM + endStyle1 + DELIM + endStyle2));
+            logger.info("Added new connector");
          } // if("Connector")
       } // while()
    } // parseEdgeFile()
