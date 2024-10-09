@@ -19,12 +19,12 @@ public class EdgeTable {
    }
    
    public int getNumFigure() {
-      logger.info("EdgeTable getNumFigure: " + numFigure);
+      logger.debug("EdgeTable getNumFigure: " + numFigure);
       return numFigure;
    }
    
    public String getName() {
-      logger.info("EdgeTable getName: " + name);
+      logger.debug("EdgeTable getName: " + name);
       return name;
    }
    
@@ -34,28 +34,28 @@ public class EdgeTable {
    }
    
    public int[] getRelatedTablesArray() {
-      logger.info("EdgeTable getRelatedTablesArray: " + relatedTables);
+      logger.debug("EdgeTable getRelatedTablesArray: " + relatedTables);
       return relatedTables;
    }
    
    public int[] getRelatedFieldsArray() {
-      logger.info("EdgeTable getRelatedFieldsArray: " + relatedFields);
+      logger.debug("EdgeTable getRelatedFieldsArray: " + relatedFields);
       return relatedFields;
    }
    
    public void setRelatedField(int index, int relatedValue) {
       relatedFields[index] = relatedValue;
-      logger.info("EdgeTable setRelatedField at index " + index + ": " + relatedValue);
+      logger.debug("EdgeTable setRelatedField at index " + index + ": " + relatedValue);
    }
    
    public int[] getNativeFieldsArray() {
-      logger.info("EdgeTable getNativeFieldsArray: " + nativeFields);
+      logger.debug("EdgeTable getNativeFieldsArray: " + nativeFields);
       return nativeFields;
    }
 
    public void addNativeField(int value) {
       alNativeFields.add(new Integer(value));
-      logger.info("EdgeTable add a native field: " + value);
+      logger.debug("EdgeTable add a native field: " + value);
    }
 
    public void moveFieldUp(int index) { //move the field closer to the beginning of the list

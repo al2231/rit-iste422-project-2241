@@ -28,7 +28,7 @@ public class EdgeConvertFileParser {
    public static final String EDGE_ID = "EDGE Diagram File"; //first line of .edg files should be this
    public static final String SAVE_ID = "EdgeConvert Save File"; //first line of save files should be this
    public static final String DELIM = "|";
-   private static final Logger logger = LogManager.getLogger(EdgeField.class.getName());
+   private static final Logger logger = LogManager.getLogger(EdgeConvertFileParser.class.getName());
    
    public EdgeConvertFileParser(File constructorFile) {
       numFigure = 0;
@@ -154,6 +154,9 @@ public class EdgeConvertFileParser {
    private void resolveConnectors() { //Identify nature of Connector endpoints
       int endPoint1, endPoint2;
       int fieldIndex = 0, table1Index = 0, table2Index = 0;
+
+      logger.info("Starting to resolve connectors");
+
       for (int cIndex = 0; cIndex < connectors.length; cIndex++) {
          endPoint1 = connectors[cIndex].getEndPoint1();
          endPoint2 = connectors[cIndex].getEndPoint2();
@@ -180,6 +183,7 @@ public class EdgeConvertFileParser {
          }
          
          if (connectors[cIndex].getIsEP1Field() && connectors[cIndex].getIsEP2Field()) { //both endpoints are fields, implies lack of normalization
+            logger.warn("The file contains composite attributes, which implies lack of normalization");
             JOptionPane.showMessageDialog(null, "The Edge Diagrammer file\n" + parseFile + "\ncontains composite attributes. Please resolve them and try again.");
             EdgeConvertGUI.setReadSuccess(false); //this tells GUI not to populate JList components
             break; //stop processing list of Connectors
@@ -188,6 +192,7 @@ public class EdgeConvertFileParser {
          if (connectors[cIndex].getIsEP1Table() && connectors[cIndex].getIsEP2Table()) { //both endpoints are tables
             if ((connectors[cIndex].getEndStyle1().indexOf("many") >= 0) &&
                 (connectors[cIndex].getEndStyle2().indexOf("many") >= 0)) { //the connector represents a many-many relationship, implies lack of normalization
+               logger.warn("There is a many-many relationshhip between tables, which implies lack of normalization");
                JOptionPane.showMessageDialog(null, "There is a many-many relationship between tables\n\"" + tables[table1Index].getName() + "\" and \"" + tables[table2Index].getName() + "\"" + "\nPlease resolve this and try again.");
                EdgeConvertGUI.setReadSuccess(false); //this tells GUI not to populate JList components
                break; //stop processing list of Connectors
@@ -207,6 +212,7 @@ public class EdgeConvertFileParser {
                fields[fieldIndex].setTableID(tables[table2Index].getNumFigure()); //tell the field what table it belongs to
             }
          } else if (fieldIndex >=0) { //field has already been assigned to a table
+            logger.warn("The field " +fields[fieldIndex].getName() +" has already been assigned to a table");
             JOptionPane.showMessageDialog(null, "The attribute " + fields[fieldIndex].getName() + " is connected to multiple tables.\nPlease resolve this and try again.");
             EdgeConvertGUI.setReadSuccess(false); //this tells GUI not to populate JList components
             break; //stop processing list of Connectors
@@ -218,6 +224,9 @@ public class EdgeConvertFileParser {
       StringTokenizer stTables, stNatFields, stRelFields, stNatRelFields, stField;
       EdgeTable tempTable;
       EdgeField tempField;
+
+      logger.info("Starting to parse save file");
+
       currentLine = br.readLine();
       currentLine = br.readLine(); //this should be "Table: "
       while (currentLine.startsWith("Table: ")) {
@@ -275,6 +284,7 @@ public class EdgeConvertFileParser {
    } // parseSaveFile()
 
    private void makeArrays() { //convert ArrayList objects into arrays of the appropriate Class type
+      logger.info("Converting ArrayList to arrays");
       if (alTables != null) {
          tables = (EdgeTable[])alTables.toArray(new EdgeTable[alTables.size()]);
       }
@@ -290,21 +300,26 @@ public class EdgeConvertFileParser {
       for (int i = 0; i < alTables.size(); i++) {
          EdgeTable tempTable = (EdgeTable)alTables.get(i);
          if (tempTable.getName().equals(testTableName)) {
+            logger.warn("There is a duplicate table");
             return true;
          }
       }
+      logger.debug("There are no duplicate tables.");
       return false;
    }
    
    public EdgeTable[] getEdgeTables() {
+      logger.debug("EdgeConvertFileParser getEdgeTables: " + tables);
       return tables;
    }
    
    public EdgeField[] getEdgeFields() {
+      logger.debug("EdgeConvertFileParser getEdgeFields: " + fields);
       return fields;
    }
    
    public void openFile(File inputFile) {
+      logger.info("Opening file.");
       try {
          fr = new FileReader(inputFile);
          br = new BufferedReader(fr);
@@ -312,26 +327,29 @@ public class EdgeConvertFileParser {
          currentLine = br.readLine().trim();
          numLine++;
          if (currentLine.startsWith(EDGE_ID)) { //the file chosen is an Edge Diagrammer file
+            logger.debug("Edge file found.");
             this.parseEdgeFile(); //parse the file
             br.close();
             this.makeArrays(); //convert ArrayList objects into arrays of the appropriate Class type
             this.resolveConnectors(); //Identify nature of Connector endpoints
          } else {
             if (currentLine.startsWith(SAVE_ID)) { //the file chosen is a Save file created by this application
+               logger.debug("Save file found");
                this.parseSaveFile(); //parse the file
                br.close();
                this.makeArrays(); //convert ArrayList objects into arrays of the appropriate Class type
             } else { //the file chosen is something else
+               logger.warn("Wrong type of file chosen");
                JOptionPane.showMessageDialog(null, "Unrecognized file format");
             }
          }
       } // try
       catch (FileNotFoundException fnfe) {
-         System.out.println("Cannot find \"" + inputFile.getName() + "\".");
+         logger.error("Cannot find \"" + inputFile.getName() + "\".");
          System.exit(0);
       } // catch FileNotFoundException
       catch (IOException ioe) {
-         System.out.println(ioe);
+         logger.error("IOException" + ioe);
          System.exit(0);
       } // catch IOException
    } // openFile()

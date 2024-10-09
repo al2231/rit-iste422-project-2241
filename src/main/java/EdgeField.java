@@ -30,12 +30,12 @@ public class EdgeField {
    }
    
    public int getNumFigure() {
-      logger.info("EdgeField getNumFigure: " + numFigure);
+      logger.debug("EdgeField getNumFigure: " + numFigure);
       return numFigure;
    }
    
    public String getName() {
-      logger.info("EdgeField getName: " + name);
+      logger.debug("EdgeField getName: " + name);
       return name;
    }
    
@@ -46,61 +46,61 @@ public class EdgeField {
    
    public void setTableID(int value) {
       tableID = value;
-      logger.info("EdgeField setTableID: " + value);
+      logger.debug("EdgeField setTableID: " + value);
    }
    
    public int getTableBound() {
-      logger.info("EdgeField getTableBound: " + tableBound);
+      logger.debug("EdgeField getTableBound: " + tableBound);
       return tableBound;
    }
    
    public void setTableBound(int value) {
       tableBound = value;
-      logger.info("EdgeField setTableBound: " + value);
+      logger.debug("EdgeField setTableBound: " + value);
    }
 
    public int getFieldBound() {
-      logger.info("EdgeField getFieldBound: " + fieldBound);
+      logger.debug("EdgeField getFieldBound: " + fieldBound);
       return fieldBound;
    }
    
    public void setFieldBound(int value) {
       fieldBound = value;
-      logger.info("EdgeField setFieldBound: " + value);
+      logger.debug("EdgeField setFieldBound: " + value);
    }
 
    public boolean getDisallowNull() {
-      logger.info("EdgeField getDisallowNull: " + disallowNull);
+      logger.debug("EdgeField getDisallowNull: " + disallowNull);
       return disallowNull;
    }
    
    public void setDisallowNull(boolean value) {
       disallowNull = value;
-      logger.info("EdgeField setDisallowNull: " + value);
+      logger.debug("EdgeField setDisallowNull: " + value);
    }
    
    public boolean getIsPrimaryKey() {
-      logger.info("EdgeField getIsPrimaryKey: " + isPrimaryKey);
+      logger.debug("EdgeField getIsPrimaryKey: " + isPrimaryKey);
       return isPrimaryKey;
    }
    
    public void setIsPrimaryKey(boolean value) {
       isPrimaryKey = value;
-      logger.info("EdgeField setIsPrimaryKey: " + value);
+      logger.debug("EdgeField setIsPrimaryKey: " + value);
    }
    
    public String getDefaultValue() {
-      logger.info("EdgeField getDefaultValue: " + defaultValue);
+      logger.debug("EdgeField getDefaultValue: " + defaultValue);
       return defaultValue;
    }
    
    public void setDefaultValue(String value) {
       defaultValue = value;
-      logger.info("EdgeField setDefaultValue: " + value);
+      logger.debug("EdgeField setDefaultValue: " + value);
    }
    
    public int getVarcharValue() {
-      logger.info("EdgeField getVarcharValue: " + varcharValue);
+      logger.debug("EdgeField getVarcharValue: " + varcharValue);
       return varcharValue;
    }
    
@@ -108,10 +108,10 @@ public class EdgeField {
       if (value > 0) {
          varcharValue = value;
       }
-      logger.info("EdgeField setVarcharValue: " + value);
+      logger.debug("EdgeField setVarcharValue: " + value);
    }
    public int getDataType() {
-      logger.info("EdgeField getDataType: " + dataType);
+      logger.debug("EdgeField getDataType: " + dataType);
       return dataType;
    }
    
@@ -119,11 +119,11 @@ public class EdgeField {
       if (value >= 0 && value < strDataType.length) {
          dataType = value;
       }
-      logger.info("EdgeField setDataType: " + value);
+      logger.debug("EdgeField setDataType: " + value);
    }
    
    public static String[] getStrDataType() {
-      logger.info("EdgeField getStrDataType: " + strDataType);
+      logger.debug("EdgeField getStrDataType: " + strDataType);
       return strDataType;
    }
    
