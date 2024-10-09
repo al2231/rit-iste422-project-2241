@@ -60,6 +60,7 @@ public class EdgeTable {
 
    public void moveFieldUp(int index) { //move the field closer to the beginning of the list
       if (index == 0) {
+         logger.warn("Field is at the beginning of the list.");
          return;
       }
       int tempNative = nativeFields[index - 1]; //save element at destination index
@@ -68,10 +69,13 @@ public class EdgeTable {
       int tempRelated = relatedFields[index - 1]; //save element at destination index
       relatedFields[index - 1] = relatedFields[index]; //copy target element to destination
       relatedFields[index] = tempRelated; //copy saved element to target's original location
+
+      logger.info("Field moved to " + index);
    }
    
    public void moveFieldDown(int index) { //move the field closer to the end of the list
       if (index == (nativeFields.length - 1)) {
+         logger.warn("Field is at the end of the list.");
          return;
       }
       int tempNative = nativeFields[index + 1]; //save element at destination index
@@ -80,30 +84,39 @@ public class EdgeTable {
       int tempRelated = relatedFields[index + 1]; //save element at destination index
       relatedFields[index + 1] = relatedFields[index]; //copy target element to destination
       relatedFields[index] = tempRelated; //copy saved element to target's original location
+
+      logger.info("Field moved to " + index);
    }
 
    public void makeArrays() { //convert the ArrayLists into int[]
       Integer[] temp;
+
+      logger.info("Starting to convert Arraylists to arrays.");
       temp = (Integer[])alNativeFields.toArray(new Integer[alNativeFields.size()]);
       nativeFields = new int[temp.length];
       for (int i = 0; i < temp.length; i++) {
          nativeFields[i] = temp[i].intValue();
       }
+
+      logger.debug("Converted to nativeFields. Length: " + nativeFields.length);
       
       temp = (Integer[])alRelatedTables.toArray(new Integer[alRelatedTables.size()]);
       relatedTables = new int[temp.length];
       for (int i = 0; i < temp.length; i++) {
          relatedTables[i] = temp[i].intValue();
       }
+
+      logger.debug("Converted to relatedTables. Length: " + relatedTables.length);
       
       relatedFields = new int[nativeFields.length];
       for (int i = 0; i < relatedFields.length; i++) {
          relatedFields[i] = 0;
       }
+
+      logger.info("Finished converting to int arrays.");
    }
 
    public String toString() {
-      logger.info("EdgeTable toString method");
       StringBuffer sb = new StringBuffer();
       sb.append("Table: " + numFigure + "\r\n");
       sb.append("{\r\n");
@@ -130,6 +143,8 @@ public class EdgeTable {
          }
       }
       sb.append("\r\n}\r\n");
+
+      logger.info("EdgeTable toString method: " + sb.toString());
       
       return sb.toString();
    }
