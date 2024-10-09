@@ -76,6 +76,8 @@ public class EdgeConvertGUI {
    static JMenuItem jmiDROpenEdge, jmiDROpenSave, jmiDRSave, jmiDRSaveAs, jmiDRExit, jmiDROptionsOutputLocation, jmiDROptionsShowProducts, jmiDRHelpAbout;
    
    public EdgeConvertGUI() {
+      logger.info("EdgeConvertGUI initialized");
+
       menuListener = new EdgeMenuListener();
       radioListener = new EdgeRadioButtonListener();
       edgeWindowListener = new EdgeWindowListener();
@@ -1137,42 +1139,60 @@ public class EdgeConvertGUI {
       public void windowOpened(WindowEvent we) {}
       
       public void windowClosing(WindowEvent we) {
+         logger.debug("Window closing event triggered: " + we.getWindow().getName());
          if (!dataSaved) {
+            logger.warn("Data is unsaved, prompting the user to save.");
             int answer = JOptionPane.showOptionDialog(null,
                 "You currently have unsaved data. Would you like to save?",
                 "Are you sure?",
                 JOptionPane.YES_NO_CANCEL_OPTION,
                 JOptionPane.QUESTION_MESSAGE,
                 null, null, null);
+            logger.debug("User response to unsaved data prompt: " + answer);
             if (answer == JOptionPane.YES_OPTION) {
+               logger.debug("User opted to save data before closing.");
                if (saveFile == null) {
+                  logger.debug("No existing save file, triggering Save As.");
                   saveAs();
                }
                writeSave();
+               logger.info("Data saved successfully.");
             }
             if ((answer == JOptionPane.CANCEL_OPTION) || (answer == JOptionPane.CLOSED_OPTION)) {
+               logger.debug("User cancelled window closing operation.");
                if (we.getSource() == jfDT) {
                   jfDT.setVisible(true);
+                  logger.trace("DT window open.");
                }
                if (we.getSource() == jfDR) {
                   jfDR.setVisible(true);
+                  logger.trace("DR window open.");
                }
                return;
             }
          }
+         logger.info("Exiting the application.");
          System.exit(0); //No was selected
       }
    }
    
    class CreateDDLButtonListener implements ActionListener {
       public void actionPerformed(ActionEvent ae) {
+         logger.debug("Create DDL button clicked.");
+
          while (outputDir == null) {
+            logger.warn("Output directory not set. Prompting user to select output directory.");
             JOptionPane.showMessageDialog(null, "You have not selected a path that contains valid output definition files yet.\nPlease select a path now.");
             setOutputDir();
+            logger.debug("User prompted to set output directory.");
          }
+
+         logger.info("Output directory set to: " + outputDir.getAbsolutePath());
          getOutputClasses(); //in case outputDir was set before a file was loaded and EdgeTable/EdgeField objects created
+         logger.trace("Fetching output classes.");
          sqlString = getSQLStatements();
          if (sqlString.equals(EdgeConvertGUI.CANCELLED)) {
+            logger.debug("SQL statement generation was cancelled.");
             return;
          }
          writeSQL(sqlString);
@@ -1187,6 +1207,7 @@ public class EdgeConvertGUI {
                int answer = JOptionPane.showConfirmDialog(null, "You currently have unsaved data. Continue?",
                                                           "Are you sure?", JOptionPane.YES_NO_OPTION);
                if (answer != JOptionPane.YES_OPTION) {
+                  logger.info("User opted not to proceed with opening a new file due to unsaved data.");
                   return;
                }
             }
@@ -1194,6 +1215,7 @@ public class EdgeConvertGUI {
             returnVal = jfcEdge.showOpenDialog(null);
             if (returnVal == JFileChooser.APPROVE_OPTION) {
                parseFile = jfcEdge.getSelectedFile();
+               logger.info("Selected file to open: " + parseFile.getName());
                ecfp = new EdgeConvertFileParser(parseFile);
                tables = ecfp.getEdgeTables();
                for (int i = 0; i < tables.length; i++) {
@@ -1216,6 +1238,7 @@ public class EdgeConvertGUI {
                jfDT.setTitle(DEFINE_TABLES + " - " + truncatedFilename);
                jfDR.setTitle(DEFINE_RELATIONS + " - " + truncatedFilename);
             } else {
+               logger.info("File open operation cancelled by user.");
                return;
             }
             dataSaved = true;
@@ -1226,6 +1249,7 @@ public class EdgeConvertGUI {
                int answer = JOptionPane.showConfirmDialog(null, "You currently have unsaved data. Continue?",
                                                           "Are you sure?", JOptionPane.YES_NO_OPTION);
                if (answer != JOptionPane.YES_OPTION) {
+                  logger.info("New file opening not processed due to unsaved data.");
                   return;
                }
             }
@@ -1233,6 +1257,7 @@ public class EdgeConvertGUI {
             returnVal = jfcEdge.showOpenDialog(null);
             if (returnVal == JFileChooser.APPROVE_OPTION) {
                saveFile = jfcEdge.getSelectedFile();
+               logger.info("Selected save file to open: {}", saveFile.getName());
                ecfp = new EdgeConvertFileParser(saveFile);
                tables = ecfp.getEdgeTables();
                fields = ecfp.getEdgeFields();
@@ -1251,7 +1276,11 @@ public class EdgeConvertGUI {
                truncatedFilename = saveFile.getName().substring(saveFile.getName().lastIndexOf(File.separator) + 1);
                jfDT.setTitle(DEFINE_TABLES + " - " + truncatedFilename);
                jfDR.setTitle(DEFINE_RELATIONS + " - " + truncatedFilename);
+
+               logger.info("Save file parsed and GUI updated successfully: {}", truncatedFilename);
+
             } else {
+               logger.info("File open operation cancelled by user.");
                return;
             }
             dataSaved = true;
@@ -1260,8 +1289,10 @@ public class EdgeConvertGUI {
          if ((ae.getSource() == jmiDTSaveAs) || (ae.getSource() == jmiDRSaveAs) ||
              (ae.getSource() == jmiDTSave) || (ae.getSource() == jmiDRSave)) {
             if ((ae.getSource() == jmiDTSaveAs) || (ae.getSource() == jmiDRSaveAs)) {
+               logger.info("User triggered Save As operation.");
                saveAs();
             } else {
+               logger.info("User triggered Save operation.");
                writeSave();
             }
          }
@@ -1276,10 +1307,12 @@ public class EdgeConvertGUI {
                    null, null, null);
                if (answer == JOptionPane.YES_OPTION) {
                   if (saveFile == null) {
+                     logger.info("User data saved before exiting.");
                      saveAs();
                   }
                }
                if ((answer == JOptionPane.CANCEL_OPTION) || (answer == JOptionPane.CLOSED_OPTION)) {
+                  logger.info("Exiting operation cancelled by user.");
                   return;
                }
             }
@@ -1287,14 +1320,17 @@ public class EdgeConvertGUI {
          }
          
          if ((ae.getSource() == jmiDTOptionsOutputLocation) || (ae.getSource() == jmiDROptionsOutputLocation)) {
+            logger.info("User selected output directory.");
             setOutputDir();
          }
 
          if ((ae.getSource() == jmiDTOptionsShowProducts) || (ae.getSource() == jmiDROptionsShowProducts)) {
+            logger.info("User requested product information.");
             JOptionPane.showMessageDialog(null, "The available products to create DDL statements are:\n" + displayProductNames());
          }
          
          if ((ae.getSource() == jmiDTHelpAbout) || (ae.getSource() == jmiDRHelpAbout)) {
+            logger.info("User requested about information.");
             JOptionPane.showMessageDialog(null, "EdgeConvert ERD To DDL Conversion Tool\n" +
                                                 "by Stephen A. Capperell\n" +
                                                 " 2007-2008");
