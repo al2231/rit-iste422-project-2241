@@ -122,7 +122,6 @@ public class EdgeField {
    }
    
    public static String[] getStrDataType() {
-      logger.debug("EdgeField getStrDataType: " + strDataType);
       return strDataType;
    }
    

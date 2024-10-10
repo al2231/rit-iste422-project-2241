@@ -857,7 +857,7 @@ public class EdgeConvertGUI {
    } //createDRScreen
    
    public static void setReadSuccess(boolean value) {
-      logger.info("Setting read success to: " value);
+      logger.info("Setting read success to: " + value);
       readSuccess = value;
    }
    
@@ -1130,7 +1130,7 @@ public class EdgeConvertGUI {
       }
 
       JOptionPane.showMessageDialog(null, "The available products to create DDL statements are:\n" + displayProductNames());
-      logger.info("Available products to create DDL statements: " + productNamesDisplay);
+      logger.info("Available products to create DDL statements: " + displayProductNames());
       jmiDTOptionsShowProducts.setEnabled(true);
       jmiDROptionsShowProducts.setEnabled(true);
    }
@@ -1177,9 +1177,9 @@ public class EdgeConvertGUI {
       try {
          for (int i = 0; i < resultFiles.length; i++) {
          System.out.println(resultFiles[i].getName());
-            logger.debug("Processing file: " + resultFile.getName());
+            logger.debug("Processing file: " + resultFiles[i].getName());
             if (!resultFiles[i].getName().endsWith(".class")) {
-               logger.warn("Ignoring non-class file: " + resultFile.getName());
+               logger.warn("Ignoring non-class file: " + resultFiles[i].getName());
                continue; //ignore all files that are not .class files
             }
             resultClass = Class.forName(resultFiles[i].getName().substring(0, resultFiles[i].getName().lastIndexOf(".")));
