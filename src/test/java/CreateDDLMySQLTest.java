@@ -104,12 +104,17 @@ public class CreateDDLMySQLTest {
         EdgeField field1 = new EdgeField("1|Field1|0|255|true|false");
         EdgeField field2 = new EdgeField("2|Field2|0|255|true|false");
         
-        table1.addNativeField(1);
+        field1.setTableID(table1.getNumFigure());
+        field1.setTableBound(table2.getNumFigure());
+        
+        table1.addNativeField(field1.getNumFigure());
+        table2.addNativeField(field2.getNumFigure());
+        
         table1.addRelatedTable(table2.getNumFigure());
-        table1.setRelatedField(0, 1);
-        table2.addNativeField(2);
         table1.makeArrays();
         table2.makeArrays();
+
+        table1.setRelatedField(0, field2.getNumFigure());
 
         dummyTables = new EdgeTable[] { table1, table2};
         dummyFields = new EdgeField[] { field1, field2 };
