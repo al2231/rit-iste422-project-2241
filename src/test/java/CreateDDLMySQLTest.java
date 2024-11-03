@@ -47,8 +47,9 @@ public class CreateDDLMySQLTest {
     @Test
 	public void generateDatabaseNameisEntered_thenReturnDatabaseName() {
         String db = "MySQLDB";
+        testObj.databaseName = db;
         testObj.generateDatabaseName();
-        assertThat("dep", testObj.getDatabaseName(), is(db));
+        assertThat("database name match user input", testObj.getDatabaseName(), is(db));
     }
 
     @Test
@@ -63,6 +64,20 @@ public class CreateDDLMySQLTest {
         assertThat("string contains CREATE DATABASE and USE;", ddl, containsString("CREATE DATABASE MySQLDB;"));
         assertThat("string contains CREATE DATABASE and USE;", ddl, containsString("USE MySQLDB;"));
 
+    }
+
+    @Test
+    public void createDDLgivenEmptyFieldArray_thenGenerateEmptyTable() {
+        EdgeTable emptyTable = new EdgeTable("1|EmptyTable");
+        emptyTable.makeArrays();
+        dummyTables = new EdgeTable[] { emptyTable };
+        dummyFields = new EdgeField[] {};
+
+        testObj = new CreateDDLMySQL(dummyTables, dummyFields);
+        testObj.createDDL();
+        String ddl = testObj.getSQLString();
+
+        assertThat("should only create an empty table", ddl, containsString("CREATE TABLE EmptyTable"));
     }
 
     @Test
@@ -133,6 +148,25 @@ public class CreateDDLMySQLTest {
         String ddl = testObj.getSQLString();
         assertThat("should contain VARCHAR type for field", ddl, containsString("VARCHAR"));
 
+    }
+
+    @Test
+    public void createDDLgivenFieldOfBoolType_thenIncludesBoolean() {
+        EdgeTable table1 = new EdgeTable("1|Table1");
+        EdgeField field1 = new EdgeField("1|Field1|");
+        field1.setDataType(1);
+        
+        table1.addNativeField(1);
+        table1.makeArrays();
+
+        dummyTables = new EdgeTable[] { table1 };
+        dummyFields = new EdgeField[] { field1 };
+
+        testObj = new CreateDDLMySQL(dummyTables, dummyFields);
+        testObj.createDDL();
+        String ddl = testObj.getSQLString();
+
+        assertThat("should contain BOOL type for field", ddl, containsString("BOOL"));
     }
 
     @Test
