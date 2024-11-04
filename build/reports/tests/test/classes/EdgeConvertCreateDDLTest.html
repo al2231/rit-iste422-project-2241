@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - Class EdgeConvertCreateDDLTest</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>Class EdgeConvertCreateDDLTest</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/default-package.html">default-package</a> &gt; EdgeConvertCreateDDLTest</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">16</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">0.583s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="tabs">
+<ul class="tabLinks">
+<li>
+<a href="#tab0">Tests</a>
+</li>
+<li>
+<a href="#tab1">Standard output</a>
+</li>
+</ul>
+<div id="tab0" class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">givenDefault_whenCalled_tablesAndFieldsAreNull</td>
+<td class="success">0.010s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">givenEmptyArrays</td>
+<td class="success">0.014s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">givenInitializeCalled_AndNoTables</td>
+<td class="success">0.007s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">givenInvalidNumFigure_whenGetFieldCalled_thenReturnsNull</td>
+<td class="success">0.011s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">givenInvalidNumFigure_whenGetTableCalled_thenReturnsNull</td>
+<td class="success">0.006s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">givenMultipleRelatedFields</td>
+<td class="success">0.411s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">givenNoRelatedFields_whenInitializeIsCalled_ThenTableShouldBeZero</td>
+<td class="success">0.008s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">givenParameterizedConstructor</td>
+<td class="success">0.016s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">givenRelatedFields_whenInitalizeIsCalled_valuesAreCorrect</td>
+<td class="success">0.009s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">givenValidNumFigure_whenGetFieldCalled_thenReturnsField</td>
+<td class="success">0.007s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">givenValidNumFigure_whenGetTableCalled_thenReturnTable</td>
+<td class="success">0.031s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">testGetDatabaseName</td>
+<td class="success">0.009s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">testGetProductName</td>
+<td class="success">0.008s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">testInitializeStringBuffer</td>
+<td class="success">0.011s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">testInitializeWithDuplicates</td>
+<td class="success">0.012s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">testInitializeWithMismatched</td>
+<td class="success">0.013s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div id="tab1" class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>51:33.788 INFO class:EdgeTable - EdgeTable constructor called with inputString
+51:33.791 INFO class:EdgeTable - EdgeTable constructor called with inputString
+51:33.792 INFO class:EdgeField - EdgeField constructor called with inputString
+51:33.793 INFO class:EdgeField - EdgeField constructor called with inputString
+51:33.794 INFO class:EdgeTable - EdgeTable add a related table: 1
+51:33.795 INFO class:EdgeTable - Starting to convert Arraylists to arrays.
+51:33.797 INFO class:EdgeTable - Finished converting to int arrays.
+51:33.797 INFO class:EdgeTable - EdgeTable add a related table: 1
+51:33.798 INFO class:EdgeTable - Starting to convert Arraylists to arrays.
+51:33.798 INFO class:EdgeTable - Finished converting to int arrays.
+51:33.800 INFO class:EdgeTable - EdgeTable toString method: Table: 1
+{
+TableName: TestTable
+NativeFields: 1
+RelatedTables: 1
+RelatedFields: 0
+}
+
+51:33.800 INFO class:EdgeTable - EdgeTable toString method: Table: 2
+{
+TableName: TestTable2
+NativeFields: 1
+RelatedTables: 1
+RelatedFields: 0
+}
+
+51:33.801 INFO class:EdgeField - EdgeField toString method
+51:33.816 INFO class:EdgeField - EdgeField toString method
+51:33.818 INFO class:EdgeConvertCreateDDL - Initializing num of bound tables
+51:33.822 INFO class:EdgeConvertCreateDDL - EdgeConvertCreateDDL initialization complete
+51:33.823 INFO class:EdgeConvertCreateDDL - EdgeConvertCreateDDL constructor called with EdgeTable[] and EdgeField[]
+51:33.824 INFO class:EdgeTable - Starting to convert Arraylists to arrays.
+51:33.825 INFO class:EdgeTable - Finished converting to int arrays.
+51:33.826 INFO class:EdgeTable - Starting to convert Arraylists to arrays.
+51:33.827 INFO class:EdgeTable - Finished converting to int arrays.
+51:33.830 INFO class:EdgeConvertCreateDDL - Initializing num of bound tables
+51:33.833 INFO class:EdgeConvertCreateDDL - EdgeConvertCreateDDL initialization complete
+51:33.836 INFO class:EdgeTable - EdgeTable constructor called with inputString
+51:33.837 INFO class:EdgeTable - EdgeTable constructor called with inputString
+51:33.837 INFO class:EdgeField - EdgeField constructor called with inputString
+51:33.838 INFO class:EdgeField - EdgeField constructor called with inputString
+51:33.838 INFO class:EdgeTable - EdgeTable add a related table: 1
+51:33.840 INFO class:EdgeTable - Starting to convert Arraylists to arrays.
+51:33.841 INFO class:EdgeTable - Finished converting to int arrays.
+51:33.841 INFO class:EdgeTable - EdgeTable add a related table: 1
+51:33.842 INFO class:EdgeTable - Starting to convert Arraylists to arrays.
+51:33.844 INFO class:EdgeTable - Finished converting to int arrays.
+51:33.845 INFO class:EdgeTable - EdgeTable toString method: Table: 1
+{
+TableName: TestTable
+NativeFields: 1
+RelatedTables: 1
+RelatedFields: 0
+}
+
+51:33.846 INFO class:EdgeTable - EdgeTable toString method: Table: 2
+{
+TableName: TestTable2
+NativeFields: 1
+RelatedTables: 1
+RelatedFields: 0
+}
+
+51:33.847 INFO class:EdgeField - EdgeField toString method
+51:33.848 INFO class:EdgeField - EdgeField toString method
+51:33.848 INFO class:EdgeConvertCreateDDL - Initializing num of bound tables
+51:33.850 INFO class:EdgeConvertCreateDDL - EdgeConvertCreateDDL initialization complete
+51:33.851 INFO class:EdgeConvertCreateDDL - EdgeConvertCreateDDL constructor called with EdgeTable[] and EdgeField[]
+51:33.852 INFO class:EdgeTable - EdgeTable constructor called with inputString
+51:33.853 INFO class:EdgeTable - EdgeTable constructor called with inputString
+51:33.853 INFO class:EdgeField - EdgeField constructor called with inputString
+51:33.854 INFO class:EdgeField - EdgeField constructor called with inputString
+51:33.854 INFO class:EdgeTable - EdgeTable add a related table: 1
+51:33.854 INFO class:EdgeTable - Starting to convert Arraylists to arrays.
+51:33.854 INFO class:EdgeTable - Finished converting to int arrays.
+51:33.855 INFO class:EdgeTable - EdgeTable add a related table: 1
+51:33.855 INFO class:EdgeTable - Starting to convert Arraylists to arrays.
+51:33.856 INFO class:EdgeTable - Finished converting to int arrays.
+51:33.856 INFO class:EdgeTable - EdgeTable toString method: Table: 1
+{
+TableName: TestTable
+NativeFields: 1
+RelatedTables: 1
+RelatedFields: 0
+}
+
+51:33.857 INFO class:EdgeTable - EdgeTable toString method: Table: 2
+{
+TableName: TestTable2
+NativeFields: 1
+RelatedTables: 1
+RelatedFields: 0
+}
+
+51:33.859 INFO class:EdgeField - EdgeField toString method
+51:33.860 INFO class:EdgeField - EdgeField toString method
+51:33.861 INFO class:EdgeConvertCreateDDL - Initializing num of bound tables
+51:33.863 INFO class:EdgeConvertCreateDDL - EdgeConvertCreateDDL initialization complete
+51:33.864 INFO class:EdgeConvertCreateDDL - EdgeConvertCreateDDL constructor called with EdgeTable[] and EdgeField[]
+51:33.864 INFO class:EdgeConvertCreateDDL - Initializing num of bound tables
+51:33.865 INFO class:EdgeConvertCreateDDL - EdgeConvertCreateDDL initialization complete
+51:33.866 INFO class:EdgeConvertCreateDDL - EdgeConvertCreateDDL constructor called with EdgeTable[] and EdgeField[]
+51:33.866 INFO class:EdgeTable - EdgeTable constructor called with inputString
+51:33.867 INFO class:EdgeTable - EdgeTable constructor called with inputString
+51:33.867 INFO class:EdgeField - EdgeField constructor called with inputString
+51:33.869 INFO class:EdgeField - EdgeField constructor called with inputString
+51:33.870 INFO class:EdgeTable - EdgeTable add a related table: 1
+51:33.870 INFO class:EdgeTable - Starting to convert Arraylists to arrays.
+51:33.871 INFO class:EdgeTable - Finished converting to int arrays.
+51:33.871 INFO class:EdgeTable - EdgeTable add a related table: 1
+51:33.871 INFO class:EdgeTable - Starting to convert Arraylists to arrays.
+51:33.872 INFO class:EdgeTable - Finished converting to int arrays.
+51:33.872 INFO class:EdgeTable - EdgeTable toString method: Table: 1
+{
+TableName: TestTable
+NativeFields: 1
+RelatedTables: 1
+RelatedFields: 0
+}
+
+51:33.873 INFO class:EdgeTable - EdgeTable toString method: Table: 2
+{
+TableName: TestTable2
+NativeFields: 1
+RelatedTables: 1
+RelatedFields: 0
+}
+
+51:33.874 INFO class:EdgeField - EdgeField toString method
+51:33.874 INFO class:EdgeField - EdgeField toString method
+51:33.874 INFO class:EdgeConvertCreateDDL - Initializing num of bound tables
+51:33.875 INFO class:EdgeConvertCreateDDL - EdgeConvertCreateDDL initialization complete
+51:33.875 INFO class:EdgeConvertCreateDDL - EdgeConvertCreateDDL constructor called with EdgeTable[] and EdgeField[]
+51:33.876 INFO class:EdgeConvertCreateDDL - Initializing num of bound tables
+51:33.877 INFO class:EdgeConvertCreateDDL - EdgeConvertCreateDDL initialization complete
+51:33.877 INFO class:EdgeTable - EdgeTable constructor called with inputString
+51:33.878 INFO class:EdgeTable - EdgeTable constructor called with inputString
+51:33.878 INFO class:EdgeField - EdgeField constructor called with inputString
+51:33.878 INFO class:EdgeField - EdgeField constructor called with inputString
+51:33.878 INFO class:EdgeTable - EdgeTable add a related table: 1
+51:33.879 INFO class:EdgeTable - Starting to convert Arraylists to arrays.
+51:33.879 INFO class:EdgeTable - Finished converting to int arrays.
+51:33.879 INFO class:EdgeTable - EdgeTable add a related table: 1
+51:33.879 INFO class:EdgeTable - Starting to convert Arraylists to arrays.
+51:33.880 INFO class:EdgeTable - Finished converting to int arrays.
+51:33.880 INFO class:EdgeTable - EdgeTable toString method: Table: 1
+{
+TableName: TestTable
+NativeFields: 1
+RelatedTables: 1
+RelatedFields: 0
+}
+
+51:33.881 INFO class:EdgeTable - EdgeTable toString method: Table: 2
+{
+TableName: TestTable2
+NativeFields: 1
+RelatedTables: 1
+RelatedFields: 0
+}
+
+51:33.882 INFO class:EdgeField - EdgeField toString method
+51:33.882 INFO class:EdgeField - EdgeField toString method
+51:33.882 INFO class:EdgeConvertCreateDDL - Initializing num of bound tables
+51:33.883 INFO class:EdgeConvertCreateDDL - EdgeConvertCreateDDL initialization complete
+51:33.883 INFO class:EdgeConvertCreateDDL - EdgeConvertCreateDDL constructor called with EdgeTable[] and EdgeField[]
+51:33.886 INFO class:EdgeTable - Starting to convert Arraylists to arrays.
+51:33.887 INFO class:EdgeTable - Finished converting to int arrays.
+51:33.887 INFO class:EdgeTable - Starting to convert Arraylists to arrays.
+51:33.887 INFO class:EdgeTable - Finished converting to int arrays.
+51:33.888 INFO class:EdgeConvertCreateDDL - Initializing num of bound tables
+51:33.889 INFO class:EdgeConvertCreateDDL - EdgeConvertCreateDDL initialization complete
+51:33.892 INFO class:EdgeTable - EdgeTable constructor called with inputString
+51:33.892 INFO class:EdgeTable - EdgeTable constructor called with inputString
+51:33.893 INFO class:EdgeField - EdgeField constructor called with inputString
+51:33.893 INFO class:EdgeField - EdgeField constructor called with inputString
+51:33.893 INFO class:EdgeTable - EdgeTable add a related table: 1
+51:33.893 INFO class:EdgeTable - Starting to convert Arraylists to arrays.
+51:33.895 INFO class:EdgeTable - Finished converting to int arrays.
+51:33.895 INFO class:EdgeTable - EdgeTable add a related table: 1
+51:33.895 INFO class:EdgeTable - Starting to convert Arraylists to arrays.
+51:33.896 INFO class:EdgeTable - Finished converting to int arrays.
+51:33.896 INFO class:EdgeTable - EdgeTable toString method: Table: 1
+{
+TableName: TestTable
+NativeFields: 1
+RelatedTables: 1
+RelatedFields: 0
+}
+
+51:33.898 INFO class:EdgeTable - EdgeTable toString method: Table: 2
+{
+TableName: TestTable2
+NativeFields: 1
+RelatedTables: 1
+RelatedFields: 0
+}
+
+51:33.899 INFO class:EdgeField - EdgeField toString method
+51:33.899 INFO class:EdgeField - EdgeField toString method
+51:33.899 INFO class:EdgeConvertCreateDDL - Initializing num of bound tables
+51:33.900 INFO class:EdgeConvertCreateDDL - EdgeConvertCreateDDL initialization complete
+51:33.900 INFO class:EdgeConvertCreateDDL - EdgeConvertCreateDDL constructor called with EdgeTable[] and EdgeField[]
+51:33.901 INFO class:EdgeTable - Starting to convert Arraylists to arrays.
+51:33.901 INFO class:EdgeTable - Finished converting to int arrays.
+51:33.901 INFO class:EdgeConvertCreateDDL - Initializing num of bound tables
+51:33.902 INFO class:EdgeConvertCreateDDL - EdgeConvertCreateDDL initialization complete
+51:33.903 INFO class:EdgeTable - EdgeTable constructor called with inputString
+51:33.903 INFO class:EdgeTable - EdgeTable constructor called with inputString
+51:33.904 INFO class:EdgeField - EdgeField constructor called with inputString
+51:33.904 INFO class:EdgeField - EdgeField constructor called with inputString
+51:33.904 INFO class:EdgeTable - EdgeTable add a related table: 1
+51:33.904 INFO class:EdgeTable - Starting to convert Arraylists to arrays.
+51:33.905 INFO class:EdgeTable - Finished converting to int arrays.
+51:33.905 INFO class:EdgeTable - EdgeTable add a related table: 1
+51:33.905 INFO class:EdgeTable - Starting to convert Arraylists to arrays.
+51:33.905 INFO class:EdgeTable - Finished converting to int arrays.
+51:33.906 INFO class:EdgeTable - EdgeTable toString method: Table: 1
+{
+TableName: TestTable
+NativeFields: 1
+RelatedTables: 1
+RelatedFields: 0
+}
+
+51:33.906 INFO class:EdgeTable - EdgeTable toString method: Table: 2
+{
+TableName: TestTable2
+NativeFields: 1
+RelatedTables: 1
+RelatedFields: 0
+}
+
+51:33.907 INFO class:EdgeField - EdgeField toString method
+51:33.907 INFO class:EdgeField - EdgeField toString method
+51:33.908 INFO class:EdgeConvertCreateDDL - Initializing num of bound tables
+51:33.909 INFO class:EdgeConvertCreateDDL - EdgeConvertCreateDDL initialization complete
+51:33.909 INFO class:EdgeConvertCreateDDL - EdgeConvertCreateDDL constructor called with EdgeTable[] and EdgeField[]
+51:33.909 INFO class:EdgeTable - Starting to convert Arraylists to arrays.
+51:33.909 INFO class:EdgeTable - Finished converting to int arrays.
+51:33.910 INFO class:EdgeTable - Starting to convert Arraylists to arrays.
+51:33.910 INFO class:EdgeTable - Finished converting to int arrays.
+51:33.910 INFO class:EdgeConvertCreateDDL - Initializing num of bound tables
+51:33.912 INFO class:EdgeConvertCreateDDL - EdgeConvertCreateDDL initialization complete
+51:33.912 INFO class:EdgeTable - EdgeTable constructor called with inputString
+51:33.913 INFO class:EdgeTable - EdgeTable constructor called with inputString
+51:33.913 INFO class:EdgeField - EdgeField constructor called with inputString
+51:33.913 INFO class:EdgeField - EdgeField constructor called with inputString
+51:33.913 INFO class:EdgeTable - EdgeTable add a related table: 1
+51:33.914 INFO class:EdgeTable - Starting to convert Arraylists to arrays.
+51:33.914 INFO class:EdgeTable - Finished converting to int arrays.
+51:33.914 INFO class:EdgeTable - EdgeTable add a related table: 1
+51:33.914 INFO class:EdgeTable - Starting to convert Arraylists to arrays.
+51:33.915 INFO class:EdgeTable - Finished converting to int arrays.
+51:33.915 INFO class:EdgeTable - EdgeTable toString method: Table: 1
+{
+TableName: TestTable
+NativeFields: 1
+RelatedTables: 1
+RelatedFields: 0
+}
+
+51:33.915 INFO class:EdgeTable - EdgeTable toString method: Table: 2
+{
+TableName: TestTable2
+NativeFields: 1
+RelatedTables: 1
+RelatedFields: 0
+}
+
+51:33.916 INFO class:EdgeField - EdgeField toString method
+51:33.916 INFO class:EdgeField - EdgeField toString method
+51:33.917 INFO class:EdgeConvertCreateDDL - Initializing num of bound tables
+51:33.918 INFO class:EdgeConvertCreateDDL - EdgeConvertCreateDDL initialization complete
+51:33.918 INFO class:EdgeConvertCreateDDL - EdgeConvertCreateDDL constructor called with EdgeTable[] and EdgeField[]
+51:33.918 INFO class:EdgeTable - Starting to convert Arraylists to arrays.
+51:33.918 INFO class:EdgeTable - Finished converting to int arrays.
+51:33.918 INFO class:EdgeTable - Starting to convert Arraylists to arrays.
+51:33.919 INFO class:EdgeTable - Finished converting to int arrays.
+51:33.919 INFO class:EdgeConvertCreateDDL - Initializing num of bound tables
+51:33.920 INFO class:EdgeConvertCreateDDL - EdgeConvertCreateDDL initialization complete
+51:33.920 INFO class:EdgeTable - EdgeTable constructor called with inputString
+51:33.920 INFO class:EdgeTable - EdgeTable constructor called with inputString
+51:33.921 INFO class:EdgeField - EdgeField constructor called with inputString
+51:33.921 INFO class:EdgeField - EdgeField constructor called with inputString
+51:33.921 INFO class:EdgeTable - EdgeTable add a related table: 1
+51:33.921 INFO class:EdgeTable - Starting to convert Arraylists to arrays.
+51:33.922 INFO class:EdgeTable - Finished converting to int arrays.
+51:33.922 INFO class:EdgeTable - EdgeTable add a related table: 1
+51:33.922 INFO class:EdgeTable - Starting to convert Arraylists to arrays.
+51:33.922 INFO class:EdgeTable - Finished converting to int arrays.
+51:33.923 INFO class:EdgeTable - EdgeTable toString method: Table: 1
+{
+TableName: TestTable
+NativeFields: 1
+RelatedTables: 1
+RelatedFields: 0
+}
+
+51:33.923 INFO class:EdgeTable - EdgeTable toString method: Table: 2
+{
+TableName: TestTable2
+NativeFields: 1
+RelatedTables: 1
+RelatedFields: 0
+}
+
+51:33.924 INFO class:EdgeField - EdgeField toString method
+51:33.924 INFO class:EdgeField - EdgeField toString method
+51:33.924 INFO class:EdgeConvertCreateDDL - Initializing num of bound tables
+51:33.925 INFO class:EdgeConvertCreateDDL - EdgeConvertCreateDDL initialization complete
+51:33.925 INFO class:EdgeConvertCreateDDL - EdgeConvertCreateDDL constructor called with EdgeTable[] and EdgeField[]
+51:33.930 INFO class:EdgeConvertCreateDDL - EdgeConvertCreateDDL default constructor called
+51:33.931 INFO class:EdgeTable - EdgeTable constructor called with inputString
+51:33.931 INFO class:EdgeTable - EdgeTable constructor called with inputString
+51:33.932 INFO class:EdgeField - EdgeField constructor called with inputString
+51:33.932 INFO class:EdgeField - EdgeField constructor called with inputString
+51:33.932 INFO class:EdgeTable - EdgeTable add a related table: 1
+51:33.932 INFO class:EdgeTable - Starting to convert Arraylists to arrays.
+51:33.933 INFO class:EdgeTable - Finished converting to int arrays.
+51:33.933 INFO class:EdgeTable - EdgeTable add a related table: 1
+51:33.933 INFO class:EdgeTable - Starting to convert Arraylists to arrays.
+51:33.933 INFO class:EdgeTable - Finished converting to int arrays.
+51:33.934 INFO class:EdgeTable - EdgeTable toString method: Table: 1
+{
+TableName: TestTable
+NativeFields: 1
+RelatedTables: 1
+RelatedFields: 0
+}
+
+51:33.934 INFO class:EdgeTable - EdgeTable toString method: Table: 2
+{
+TableName: TestTable2
+NativeFields: 1
+RelatedTables: 1
+RelatedFields: 0
+}
+
+51:33.935 INFO class:EdgeField - EdgeField toString method
+51:33.935 INFO class:EdgeField - EdgeField toString method
+51:33.935 INFO class:EdgeConvertCreateDDL - Initializing num of bound tables
+51:33.936 INFO class:EdgeConvertCreateDDL - EdgeConvertCreateDDL initialization complete
+51:33.936 INFO class:EdgeConvertCreateDDL - EdgeConvertCreateDDL constructor called with EdgeTable[] and EdgeField[]
+51:33.937 WARN class:EdgeConvertCreateDDL - No table found for numFigure: 19
+51:33.938 INFO class:EdgeTable - EdgeTable constructor called with inputString
+51:33.938 INFO class:EdgeTable - EdgeTable constructor called with inputString
+51:33.938 INFO class:EdgeField - EdgeField constructor called with inputString
+51:33.938 INFO class:EdgeField - EdgeField constructor called with inputString
+51:33.939 INFO class:EdgeTable - EdgeTable add a related table: 1
+51:33.939 INFO class:EdgeTable - Starting to convert Arraylists to arrays.
+51:33.939 INFO class:EdgeTable - Finished converting to int arrays.
+51:33.939 INFO class:EdgeTable - EdgeTable add a related table: 1
+51:33.940 INFO class:EdgeTable - Starting to convert Arraylists to arrays.
+51:33.940 INFO class:EdgeTable - Finished converting to int arrays.
+51:33.940 INFO class:EdgeTable - EdgeTable toString method: Table: 1
+{
+TableName: TestTable
+NativeFields: 1
+RelatedTables: 1
+RelatedFields: 0
+}
+
+51:33.941 INFO class:EdgeTable - EdgeTable toString method: Table: 2
+{
+TableName: TestTable2
+NativeFields: 1
+RelatedTables: 1
+RelatedFields: 0
+}
+
+51:33.941 INFO class:EdgeField - EdgeField toString method
+51:33.942 INFO class:EdgeField - EdgeField toString method
+51:33.942 INFO class:EdgeConvertCreateDDL - Initializing num of bound tables
+51:33.943 INFO class:EdgeConvertCreateDDL - EdgeConvertCreateDDL initialization complete
+51:33.943 INFO class:EdgeConvertCreateDDL - EdgeConvertCreateDDL constructor called with EdgeTable[] and EdgeField[]
+51:33.943 INFO class:EdgeConvertCreateDDL - Initializing num of bound tables
+51:33.943 INFO class:EdgeConvertCreateDDL - EdgeConvertCreateDDL initialization complete
+51:33.943 INFO class:EdgeConvertCreateDDL - EdgeConvertCreateDDL constructor called with EdgeTable[] and EdgeField[]
+51:33.944 INFO class:EdgeConvertCreateDDL - Initializing num of bound tables
+51:33.944 INFO class:EdgeConvertCreateDDL - EdgeConvertCreateDDL initialization complete
+51:33.944 INFO class:EdgeTable - EdgeTable constructor called with inputString
+51:33.945 INFO class:EdgeTable - EdgeTable constructor called with inputString
+51:33.945 INFO class:EdgeField - EdgeField constructor called with inputString
+51:33.945 INFO class:EdgeField - EdgeField constructor called with inputString
+51:33.945 INFO class:EdgeTable - EdgeTable add a related table: 1
+51:33.945 INFO class:EdgeTable - Starting to convert Arraylists to arrays.
+51:33.946 INFO class:EdgeTable - Finished converting to int arrays.
+51:33.946 INFO class:EdgeTable - EdgeTable add a related table: 1
+51:33.946 INFO class:EdgeTable - Starting to convert Arraylists to arrays.
+51:33.946 INFO class:EdgeTable - Finished converting to int arrays.
+51:33.947 INFO class:EdgeTable - EdgeTable toString method: Table: 1
+{
+TableName: TestTable
+NativeFields: 1
+RelatedTables: 1
+RelatedFields: 0
+}
+
+51:33.947 INFO class:EdgeTable - EdgeTable toString method: Table: 2
+{
+TableName: TestTable2
+NativeFields: 1
+RelatedTables: 1
+RelatedFields: 0
+}
+
+51:33.948 INFO class:EdgeField - EdgeField toString method
+51:33.948 INFO class:EdgeField - EdgeField toString method
+51:33.948 INFO class:EdgeConvertCreateDDL - Initializing num of bound tables
+51:33.949 INFO class:EdgeConvertCreateDDL - EdgeConvertCreateDDL initialization complete
+51:33.949 INFO class:EdgeConvertCreateDDL - EdgeConvertCreateDDL constructor called with EdgeTable[] and EdgeField[]
+51:33.951 INFO class:EdgeConvertCreateDDL - Field found for numFigure: 1 -&gt; Field: TestField1
+51:33.952 INFO class:EdgeTable - EdgeTable constructor called with inputString
+51:33.952 INFO class:EdgeTable - EdgeTable constructor called with inputString
+51:33.952 INFO class:EdgeField - EdgeField constructor called with inputString
+51:33.956 INFO class:EdgeField - EdgeField constructor called with inputString
+51:33.956 INFO class:EdgeTable - EdgeTable add a related table: 1
+51:33.956 INFO class:EdgeTable - Starting to convert Arraylists to arrays.
+51:33.957 INFO class:EdgeTable - Finished converting to int arrays.
+51:33.957 INFO class:EdgeTable - EdgeTable add a related table: 1
+51:33.957 INFO class:EdgeTable - Starting to convert Arraylists to arrays.
+51:33.957 INFO class:EdgeTable - Finished converting to int arrays.
+51:33.958 INFO class:EdgeTable - EdgeTable toString method: Table: 1
+{
+TableName: TestTable
+NativeFields: 1
+RelatedTables: 1
+RelatedFields: 0
+}
+
+51:33.962 INFO class:EdgeTable - EdgeTable toString method: Table: 2
+{
+TableName: TestTable2
+NativeFields: 1
+RelatedTables: 1
+RelatedFields: 0
+}
+
+51:33.964 INFO class:EdgeField - EdgeField toString method
+51:33.965 INFO class:EdgeField - EdgeField toString method
+51:33.966 INFO class:EdgeConvertCreateDDL - Initializing num of bound tables
+51:33.966 INFO class:EdgeConvertCreateDDL - EdgeConvertCreateDDL initialization complete
+51:33.975 INFO class:EdgeConvertCreateDDL - EdgeConvertCreateDDL constructor called with EdgeTable[] and EdgeField[]
+51:33.978 INFO class:EdgeConvertCreateDDL - Table found for numFigure: 1 -&gt; Table: TestTable
+51:33.983 INFO class:EdgeTable - EdgeTable constructor called with inputString
+51:33.984 INFO class:EdgeTable - EdgeTable constructor called with inputString
+51:33.984 INFO class:EdgeField - EdgeField constructor called with inputString
+51:33.984 INFO class:EdgeField - EdgeField constructor called with inputString
+51:33.985 INFO class:EdgeTable - EdgeTable add a related table: 1
+51:33.985 INFO class:EdgeTable - Starting to convert Arraylists to arrays.
+51:33.987 INFO class:EdgeTable - Finished converting to int arrays.
+51:33.988 INFO class:EdgeTable - EdgeTable add a related table: 1
+51:33.988 INFO class:EdgeTable - Starting to convert Arraylists to arrays.
+51:33.988 INFO class:EdgeTable - Finished converting to int arrays.
+51:33.988 INFO class:EdgeTable - EdgeTable toString method: Table: 1
+{
+TableName: TestTable
+NativeFields: 1
+RelatedTables: 1
+RelatedFields: 0
+}
+
+51:33.989 INFO class:EdgeTable - EdgeTable toString method: Table: 2
+{
+TableName: TestTable2
+NativeFields: 1
+RelatedTables: 1
+RelatedFields: 0
+}
+
+51:33.990 INFO class:EdgeField - EdgeField toString method
+51:33.990 INFO class:EdgeField - EdgeField toString method
+51:33.990 INFO class:EdgeConvertCreateDDL - Initializing num of bound tables
+51:33.991 INFO class:EdgeConvertCreateDDL - EdgeConvertCreateDDL initialization complete
+51:33.991 INFO class:EdgeConvertCreateDDL - EdgeConvertCreateDDL constructor called with EdgeTable[] and EdgeField[]
+51:33.991 INFO class:EdgeTable - EdgeTable constructor called with inputString
+51:33.992 INFO class:EdgeTable - EdgeTable constructor called with inputString
+51:33.992 INFO class:EdgeField - EdgeField constructor called with inputString
+51:33.992 INFO class:EdgeField - EdgeField constructor called with inputString
+51:33.992 INFO class:EdgeTable - EdgeTable add a related table: 1
+51:33.992 INFO class:EdgeTable - Starting to convert Arraylists to arrays.
+51:33.993 INFO class:EdgeTable - Finished converting to int arrays.
+51:33.993 INFO class:EdgeTable - EdgeTable add a related table: 1
+51:33.993 INFO class:EdgeTable - Starting to convert Arraylists to arrays.
+51:33.993 INFO class:EdgeTable - Finished converting to int arrays.
+51:33.993 INFO class:EdgeTable - EdgeTable toString method: Table: 1
+{
+TableName: TestTable
+NativeFields: 1
+RelatedTables: 1
+RelatedFields: 0
+}
+
+51:33.994 INFO class:EdgeTable - EdgeTable toString method: Table: 2
+{
+TableName: TestTable2
+NativeFields: 1
+RelatedTables: 1
+RelatedFields: 0
+}
+
+51:33.999 INFO class:EdgeField - EdgeField toString method
+51:33.999 INFO class:EdgeField - EdgeField toString method
+51:33.999 INFO class:EdgeConvertCreateDDL - Initializing num of bound tables
+51:34.000 INFO class:EdgeConvertCreateDDL - EdgeConvertCreateDDL initialization complete
+51:34.000 INFO class:EdgeConvertCreateDDL - EdgeConvertCreateDDL constructor called with EdgeTable[] and EdgeField[]
+51:34.001 INFO class:EdgeTable - EdgeTable constructor called with inputString
+51:34.002 INFO class:EdgeTable - EdgeTable constructor called with inputString
+51:34.002 INFO class:EdgeField - EdgeField constructor called with inputString
+51:34.002 INFO class:EdgeField - EdgeField constructor called with inputString
+51:34.003 INFO class:EdgeTable - EdgeTable add a related table: 1
+51:34.003 INFO class:EdgeTable - Starting to convert Arraylists to arrays.
+51:34.003 INFO class:EdgeTable - Finished converting to int arrays.
+51:34.003 INFO class:EdgeTable - EdgeTable add a related table: 1
+51:34.003 INFO class:EdgeTable - Starting to convert Arraylists to arrays.
+51:34.004 INFO class:EdgeTable - Finished converting to int arrays.
+51:34.004 INFO class:EdgeTable - EdgeTable toString method: Table: 1
+{
+TableName: TestTable
+NativeFields: 1
+RelatedTables: 1
+RelatedFields: 0
+}
+
+51:34.004 INFO class:EdgeTable - EdgeTable toString method: Table: 2
+{
+TableName: TestTable2
+NativeFields: 1
+RelatedTables: 1
+RelatedFields: 0
+}
+
+51:34.005 INFO class:EdgeField - EdgeField toString method
+51:34.005 INFO class:EdgeField - EdgeField toString method
+51:34.010 INFO class:EdgeConvertCreateDDL - Initializing num of bound tables
+51:34.011 INFO class:EdgeConvertCreateDDL - EdgeConvertCreateDDL initialization complete
+51:34.011 INFO class:EdgeConvertCreateDDL - EdgeConvertCreateDDL constructor called with EdgeTable[] and EdgeField[]
+51:34.012 WARN class:EdgeConvertCreateDDL - No field found for numFigure: -1
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="http://www.gradle.org">Gradle 8.10.1</a> at Nov 4, 2024, 2:51:34 PM</p>
+</div>
+</div>
+</body>
+</html>
