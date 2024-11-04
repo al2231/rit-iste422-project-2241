@@ -27,6 +27,7 @@ public class CreateDDLMySQLTest {
         //regular constructor
 		testObj = new CreateDDLMySQL(dummyTables, dummyFields);
         assertThat("Regular instance created and not null", testObj, notNullValue());
+        assertThat("String buffer is created", testObj.sb, notNullValue());
     }
 
     @Test
@@ -155,7 +156,7 @@ public class CreateDDLMySQLTest {
         EdgeTable table1 = new EdgeTable("1|Table1");
         EdgeField field1 = new EdgeField("1|Field1|");
         field1.setDataType(1);
-        
+
         table1.addNativeField(1);
         table1.makeArrays();
 
@@ -193,8 +194,7 @@ public class CreateDDLMySQLTest {
 
     // @Test
 	public void createDDLgivenDBNameIsEmpty_thenReadSuccessFalseAndNoSQLDDL() {
-
-        testObj.databaseName = null;
+        testObj.databaseName = "";
         String ddl = testObj.getSQLString();
         assertTrue("no SQL DDL generated when db empty", ddl.isEmpty());
         // assertFalse("read succes should be False", EdgeConvertGUI.isReadSuccess());
