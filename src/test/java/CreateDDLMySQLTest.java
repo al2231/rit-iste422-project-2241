@@ -125,6 +125,7 @@ public class CreateDDLMySQLTest {
         
         field1.setTableID(table1.getNumFigure());
         field1.setTableBound(table2.getNumFigure());
+        field1.setFieldBound(2);
 
         table1.addNativeField(field1.getNumFigure());
         table2.addNativeField(field2.getNumFigure());
