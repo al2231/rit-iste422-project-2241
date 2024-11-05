@@ -164,16 +164,20 @@ public class EdgeConvertCreateDDLTest {
         assertNull("Should not return any field, should return null", testObj.getField(-1));
     }
 
-    //abstract method tests
-
+    //abstract method tests - should all return null
     @Test
     public void testGetDatabaseName() {
-        assertEquals("Database should be 'testDatabase", "testDatabase", testObj.getDatabaseName());
+        assertNull("Abstract method returns null", testObj.getDatabaseName());
     }
 
     @Test
     public void testGetProductName() {
-        assertEquals("Product should be MySQL", "MySQL", testObj.getProductName());
+        assertNull("Abstract method returns null", testObj.getProductName());
+    }
+
+    @Test
+    public void testGetSQLString() {
+        assertNull("Abstract method returns null", testObj.getSQLString());
     }
 
 }

@@ -11,23 +11,22 @@ public class ConcreteEdgeConvertCreateDDL extends EdgeConvertCreateDDL {
     // abstract stuff
     @Override
     public String getDatabaseName() {
-        return "testDatabase";
+        return null;
     }
 
     @Override
     public String getProductName() {
-        return "MySQL";
+        return null;
     }
 
     @Override
     public String getSQLString() {
-        //idk
-        return "";
+        return null;
     }
 
     @Override
     public void createDDL() {
-        // idk
+        //nothing
     }
 }
 
