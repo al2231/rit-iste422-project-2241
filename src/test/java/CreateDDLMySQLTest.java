@@ -2,6 +2,8 @@ import static org.hamcrest.CoreMatchers.*;
 
 import static org.junit.Assert.*;
 
+// import java.lang.reflect.Field;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -79,6 +81,7 @@ public class CreateDDLMySQLTest {
         String ddl = testObj.getSQLString();
 
         assertThat("should only create an empty table", ddl, containsString("CREATE TABLE EmptyTable"));
+        assertThat("should not contain primary key constraint", ddl, not(containsString("Field")));
     }
 
     @Test
@@ -112,7 +115,7 @@ public class CreateDDLMySQLTest {
 
     }
 
-    // @Test
+    @Test
 	public void createDDLgivenTablewithForeignKey_thenIncludesForeignKeyConstraint() {
         EdgeTable table1 = new EdgeTable("1|Table1");
         EdgeTable table2 = new EdgeTable("2|Table2");
@@ -192,10 +195,39 @@ public class CreateDDLMySQLTest {
 
     }
 
+    public class TestCreateDDLMySQL extends CreateDDLMySQL {
+        public TestCreateDDLMySQL(EdgeTable[] tables, EdgeField[] fields) {
+            super(tables, fields);
+            this.sb = new StringBuffer();
+        }
+
+        @Override
+        public String generateDatabaseName() {
+            return "";
+        }
+    }
+    
     // @Test
-	public void createDDLgivenDBNameIsEmpty_thenReadSuccessFalseAndNoSQLDDL() {
-        testObj.databaseName = "";
+	public void createDDLgivenDBNameIsEmpty_thenReadSuccessFalseAndNoSQLDDL() throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
+
+        EdgeField field1 = new EdgeField("1|Field|0|255|true|false");
+        EdgeTable table1 = new EdgeTable("1|Table");
+
+        table1.addNativeField(1);
+        table1.makeArrays();
+
+        EdgeTable[] tables = new EdgeTable[] {table1};
+        EdgeField[] fields = new EdgeField[] {field1};
+
+		TestCreateDDLMySQL testObj = new TestCreateDDLMySQL(tables, fields);
+        // testObj = new CreateDDLMySQL();
+        // testObj.sb = new StringBuffer();
+        // Field dbNameField = CreateDDLMySQL.class.getDeclaredField("databaseName");
+        // dbNameField.setAccessible(true);
+        // dbNameField.set(testObj, "");
+
         String ddl = testObj.getSQLString();
+        System.out.println("********************" + ddl);
         assertTrue("no SQL DDL generated when db empty", ddl.isEmpty());
         // assertFalse("read succes should be False", EdgeConvertGUI.isReadSuccess());
     }
