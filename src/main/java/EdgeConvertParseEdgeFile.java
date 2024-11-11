@@ -1,4 +1,12 @@
+import java.io.*;
+import java.util.*;
+import javax.swing.*;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+public class EdgeConvertParseEdgeFile extends EdgeConvertFileParser {
+ 
  public void parseEdgeFile() throws IOException {
       logger.info("Parsing edge diagram file");
       while ((currentLine = br.readLine()) != null) {
@@ -103,3 +111,4 @@
          } // if("Connector")
       } // while()
    } // parseEdgeFile()
+}
