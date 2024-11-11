@@ -1,14 +1,20 @@
 import java.io.*;
-import java.util.*;
-import javax.swing.*;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.StringTokenizer;
 
 public class EdgeConvertParseSaveFile extends EdgeConvertFileParser {
- 
+   private String currentLine;
+   private BufferedReader br;
+   private String tableName;
+   private String fieldName;
+   private int numFigure, numFields, numTables;
+
+   public EdgeConvertParseSaveFile(File constructorFile) {
+      super(constructorFile);
+   }
+
    public void parseSaveFile() throws IOException { //this method is unclear and confusing in places
-      StringTokenizer stTables, stNatFields, stRelFields, stNatRelFields, stField;
+      // StringTokenizer stTables, stNatFields, stRelFields, stNatRelFields, stField;
+      StringTokenizer stTables, stNatFields, stRelFields, stField;
       EdgeTable tempTable;
       EdgeField tempField;
 

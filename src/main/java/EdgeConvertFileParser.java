@@ -7,14 +7,16 @@ import org.apache.logging.log4j.Logger;
 
 public class EdgeConvertFileParser {
    //private String filename = "test.edg";
-   private File parseFile;
+   protected File parseFile; //changed from private to protected
    private FileReader fr;
    private BufferedReader br;
    private String currentLine;
-   private ArrayList alTables, alFields, alConnectors;
+   protected ArrayList<EdgeTable> alTables;
+   protected ArrayList<EdgeField> alFields;
+   protected ArrayList<EdgeConnector> alConnectors; //changes from private to protected
    private EdgeTable[] tables;
    private EdgeField[] fields;
-   private EdgeField tempField;
+   // private EdgeField tempField;
    private EdgeConnector[] connectors;
    private String style;
    private String text;
@@ -28,7 +30,7 @@ public class EdgeConvertFileParser {
    public static final String EDGE_ID = "EDGE Diagram File"; //first line of .edg files should be this
    public static final String SAVE_ID = "EdgeConvert Save File"; //first line of save files should be this
    public static final String DELIM = "|";
-   private static final Logger logger = LogManager.getLogger(EdgeConvertFileParser.class.getName());
+   protected static final Logger logger = LogManager.getLogger(EdgeConvertFileParser.class.getName());
    
    public EdgeConvertFileParser(File constructorFile) {
       numFigure = 0;
@@ -46,7 +48,7 @@ public class EdgeConvertFileParser {
 
    }
    
-   private void resolveConnectors() { //Identify nature of Connector endpoints
+   protected void resolveConnectors() { //Identify nature of Connector endpoints
       int endPoint1, endPoint2;
       int fieldIndex = 0, table1Index = 0, table2Index = 0;
 
@@ -115,7 +117,7 @@ public class EdgeConvertFileParser {
       } // connectors for() loop
    } // resolveConnectors()
 
-   private void makeArrays() { //convert ArrayList objects into arrays of the appropriate Class type
+   protected void makeArrays() { //convert ArrayList objects into arrays of the appropriate Class type
       logger.info("Converting ArrayList to arrays");
       if (alTables != null) {
          tables = (EdgeTable[])alTables.toArray(new EdgeTable[alTables.size()]);
@@ -128,7 +130,7 @@ public class EdgeConvertFileParser {
       }
    }
    
-   private boolean isTableDup(String testTableName) {
+   protected boolean isTableDup(String testTableName) {
       for (int i = 0; i < alTables.size(); i++) {
          EdgeTable tempTable = (EdgeTable)alTables.get(i);
          if (tempTable.getName().equals(testTableName)) {
@@ -160,14 +162,15 @@ public class EdgeConvertFileParser {
          numLine++;
          if (currentLine.startsWith(EDGE_ID)) { //the file chosen is an Edge Diagrammer file
             logger.debug("Edge file found.");
-            this.parseEdgeFile(); //parse the file
+            EdgeConvertParseEdgeFile edgFile = new EdgeConvertParseEdgeFile(inputFile); //parse the file
             br.close();
             this.makeArrays(); //convert ArrayList objects into arrays of the appropriate Class type
             this.resolveConnectors(); //Identify nature of Connector endpoints
          } else {
             if (currentLine.startsWith(SAVE_ID)) { //the file chosen is a Save file created by this application
                logger.debug("Save file found");
-               this.parseSaveFile(); //parse the file
+               EdgeConvertParseSaveFile savFile = new EdgeConvertParseSaveFile(inputFile); //parse the file
+               //parse the file
                br.close();
                this.makeArrays(); //convert ArrayList objects into arrays of the appropriate Class type
             } else { //the file chosen is something else
