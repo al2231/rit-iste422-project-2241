@@ -1,4 +1,12 @@
+import java.io.*;
+import java.util.*;
+import javax.swing.*;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+public class EdgeConvertParseSaveFile extends EdgeConvertFileParser {
+ 
    public void parseSaveFile() throws IOException { //this method is unclear and confusing in places
       StringTokenizer stTables, stNatFields, stRelFields, stNatRelFields, stField;
       EdgeTable tempTable;
@@ -61,3 +69,4 @@
          alFields.add(tempField);
       }
    } // parseSaveFile()
+}
