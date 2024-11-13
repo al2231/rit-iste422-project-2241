@@ -17,7 +17,8 @@ public class EdgeConvertParseEdgeFile extends EdgeConvertFileParser {
       super(constructorFile);
    }
 
-   public void parseEdgeFile() throws IOException {
+   @Override
+   public void parseFile() throws IOException {
       logger.info("Parsing edge diagram file");
       while ((currentLine = br.readLine()) != null) {
          currentLine = currentLine.trim();
