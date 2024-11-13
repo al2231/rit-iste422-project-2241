@@ -4,7 +4,7 @@ import java.util.StringTokenizer;
 public class EdgeConvertParseSaveFile extends EdgeConvertFileParser {
    private String tableName;
    private String fieldName;
-   private int numFigure, numFields, numTables;
+   private int numFields, numTables;
 
    public EdgeConvertParseSaveFile(File constructorFile) {
       super(constructorFile);

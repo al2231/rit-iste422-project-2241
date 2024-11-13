@@ -26,7 +26,8 @@ public abstract class EdgeConvertFileParser {
    // private int numFigure, numConnector;
    // numFields, numTables, numNativeRelatedFields;
    // private int endPoint1, endPoint2;
-   private int numLine;
+   // private int numLine;
+   protected int numFigure;
    // private String endStyle1, endStyle2;
    public static final String EDGE_ID = "EDGE Diagram File"; //first line of .edg files should be this
    public static final String SAVE_ID = "EdgeConvert Save File"; //first line of save files should be this
@@ -34,11 +35,11 @@ public abstract class EdgeConvertFileParser {
    protected static final Logger logger = LogManager.getLogger(EdgeConvertFileParser.class.getName());
    
    public EdgeConvertFileParser(File constructorFile) {
+      numFigure = 0;
       alTables = new ArrayList();
       alFields = new ArrayList();
       alConnectors = new ArrayList();
       parseFile = constructorFile;
-      numLine = 0;
       this.openFile(parseFile);
 
       logger.info("EdgeConvertFileParser constructor called with constructorFile");
@@ -86,6 +87,7 @@ public abstract class EdgeConvertFileParser {
    public void openFile(File inputFile) {
       logger.info("Opening file.");
       try {
+         int numLine = 0;
          fr = new FileReader(inputFile);
          br = new BufferedReader(fr);
          //test for what kind of file we have

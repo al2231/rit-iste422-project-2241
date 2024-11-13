@@ -4,7 +4,7 @@ import javax.swing.*;
 public class EdgeConvertParseEdgeFile extends EdgeConvertFileParser {
    private String style;
    private String text;
-   private int numFigure, numConnector;
+   private int numConnector;
    private int endPoint1, endPoint2;
    private String endStyle1, endStyle2;
    private boolean isEntity, isAttribute, isUnderlined = false;
@@ -12,7 +12,6 @@ public class EdgeConvertParseEdgeFile extends EdgeConvertFileParser {
    
    public EdgeConvertParseEdgeFile(File constructorFile) {
       super(constructorFile);
-      numFigure = 0;
       numConnector = 0;
    }
 
