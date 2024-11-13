@@ -1420,7 +1420,8 @@ public class EdgeConvertGUI {
             if (returnVal == JFileChooser.APPROVE_OPTION) {
                parseFile = jfcEdge.getSelectedFile();
                logger.info("Selected file to open: " + parseFile.getName());
-               ecfp = new EdgeConvertFileParser(parseFile);
+               // ecfp = new EdgeConvertFileParser(parseFile);
+               ecfp = new EdgeConvertParseEdgeFile(parseFile);
                tables = ecfp.getEdgeTables();
                for (int i = 0; i < tables.length; i++) {
                   tables[i].makeArrays();
@@ -1462,7 +1463,8 @@ public class EdgeConvertGUI {
             if (returnVal == JFileChooser.APPROVE_OPTION) {
                saveFile = jfcEdge.getSelectedFile();
                logger.info("Selected save file to open: {}", saveFile.getName());
-               ecfp = new EdgeConvertFileParser(saveFile);
+               // ecfp = new EdgeConvertFileParser(saveFile);
+               ecfp = new EdgeConvertParseSaveFile(saveFile);
                tables = ecfp.getEdgeTables();
                fields = ecfp.getEdgeFields();
                ecfp = null;
