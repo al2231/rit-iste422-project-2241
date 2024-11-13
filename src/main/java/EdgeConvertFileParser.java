@@ -47,6 +47,8 @@ public class EdgeConvertFileParser {
       logger.info("EdgeConvertFileParser constructor called with constructorFile");
 
    }
+
+   public abstract void parseFile();
    
    protected void resolveConnectors() { //Identify nature of Connector endpoints
       int endPoint1, endPoint2;
