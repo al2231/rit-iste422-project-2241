@@ -1,3 +1,5 @@
+EdgeConvert Save File
+
 Table: 1
 {
 TableName MyTable1
@@ -23,8 +25,17 @@ RelatedFields 206|207|208|209
 }
 
 #Fields#
+<<<<<<< HEAD
 1001|field1|1|0|0|1|255|true|false|default_value_1
 1002|field2|1|0|1|2|0|false|true|default_value_2
 1003|field3|2|1|1|1|100|true|false
 1004|field4|3|1|0|1|255|false|false|default_value_4
 1005|field5|3|0|1|3|50|true|true
+=======
+1|FieldOne|1|2|0|1|255|true|false|DefaultValue1
+2|FieldTwo|1|0|0|2|100|false|true|DefaultValue2
+3|FieldThree|2|1|0|3|50|true|false|DefaultValue3
+4|FieldFour|2|0|0|1|150|false|false|DefaultValue4
+5|FieldFive|1|0||1|2|200|true|true|DefaultValue5
+6|FieldSix|2|1|0|4|300|false|true|DefaultValue6
+>>>>>>> 7539100cd57524f638f2f322e6631738b5551563
