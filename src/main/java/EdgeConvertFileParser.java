@@ -22,8 +22,8 @@ public abstract class EdgeConvertFileParser {
    // private String text;
    // private String tableName;
    // private String fieldName;
-   private boolean isEntity, isAttribute, isUnderlined = false;
-   private int numFigure, numConnector;
+   // private boolean isEntity, isAttribute, isUnderlined = false;
+   // private int numFigure, numConnector;
    // numFields, numTables, numNativeRelatedFields;
    // private int endPoint1, endPoint2;
    private int numLine;
@@ -34,13 +34,9 @@ public abstract class EdgeConvertFileParser {
    protected static final Logger logger = LogManager.getLogger(EdgeConvertFileParser.class.getName());
    
    public EdgeConvertFileParser(File constructorFile) {
-      numFigure = 0;
-      numConnector = 0;
       alTables = new ArrayList();
       alFields = new ArrayList();
       alConnectors = new ArrayList();
-      isEntity = false;
-      isAttribute = false;
       parseFile = constructorFile;
       numLine = 0;
       this.openFile(parseFile);
