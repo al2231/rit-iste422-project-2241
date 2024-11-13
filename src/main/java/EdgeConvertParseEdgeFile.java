@@ -12,10 +12,6 @@ public class EdgeConvertParseEdgeFile extends EdgeConvertFileParser {
    
    public EdgeConvertParseEdgeFile(File constructorFile) {
       super(constructorFile);
-      numFigure = 0;
-      numConnector = 0;
-      isEntity = false;
-      isAttribute = false;
    }
 
    @Override
