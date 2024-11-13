@@ -2,9 +2,6 @@ import java.io.*;
 import javax.swing.*;
 
 public class EdgeConvertParseEdgeFile extends EdgeConvertFileParser {
-
-   private String currentLine;
-   private BufferedReader br;
    private String style;
    private String text;
    private int numFigure, numConnector;
@@ -135,6 +132,7 @@ public class EdgeConvertParseEdgeFile extends EdgeConvertFileParser {
       } // while()
    } // parseEdgeFile()
 
+   @Override
    protected void resolveConnectors() { //Identify nature of Connector endpoints
       int endPoint1, endPoint2;
       int fieldIndex = 0, table1Index = 0, table2Index = 0;

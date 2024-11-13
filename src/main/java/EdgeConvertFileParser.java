@@ -8,9 +8,9 @@ import org.apache.logging.log4j.Logger;
 public abstract class EdgeConvertFileParser {
    //private String filename = "test.edg";
    protected File parseFile; //changed from private to protected
-   private FileReader fr;
-   private BufferedReader br;
-   private String currentLine;
+   protected FileReader fr;
+   protected BufferedReader br;
+   protected String currentLine;
    protected ArrayList<EdgeTable> alTables;
    protected ArrayList<EdgeField> alFields;
    protected ArrayList<EdgeConnector> alConnectors; //changes from private to protected
@@ -43,13 +43,14 @@ public abstract class EdgeConvertFileParser {
       isAttribute = false;
       parseFile = constructorFile;
       numLine = 0;
-      // this.openFile(parseFile);
+      this.openFile(parseFile);
 
       logger.info("EdgeConvertFileParser constructor called with constructorFile");
 
    }
 
    public abstract void parseFile() throws IOException;
+   protected abstract void resolveConnectors();
 
    protected void makeArrays() { //convert ArrayList objects into arrays of the appropriate Class type
       logger.info("Converting ArrayList to arrays");
@@ -96,17 +97,17 @@ public abstract class EdgeConvertFileParser {
          numLine++;
          if (currentLine.startsWith(EDGE_ID)) { //the file chosen is an Edge Diagrammer file
             logger.debug("Edge file found.");
-            EdgeConvertParseEdgeFile edgFile = new EdgeConvertParseEdgeFile(inputFile); //parse the file
-            edgFile.parseFile();
+            // EdgeConvertParseEdgeFile edgFile = new EdgeConvertParseEdgeFile(inputFile); //parse the file
+            this.parseFile();
             br.close();
             this.makeArrays(); //convert ArrayList objects into arrays of the appropriate Class type
-            edgFile.resolveConnectors(); //Identify nature of Connector endpoints
+            this.resolveConnectors(); //Identify nature of Connector endpoints
          } else {
             if (currentLine.startsWith(SAVE_ID)) { //the file chosen is a Save file created by this application
                logger.debug("Save file found");
-               EdgeConvertParseSaveFile savFile = new EdgeConvertParseSaveFile(inputFile); //parse the file
+               // EdgeConvertParseSaveFile savFile = new EdgeConvertParseSaveFile(inputFile); //parse the file
                //parse the file
-               savFile.parseFile();
+               this.parseFile();
                br.close();
                this.makeArrays(); //convert ArrayList objects into arrays of the appropriate Class type
             } else { //the file chosen is something else

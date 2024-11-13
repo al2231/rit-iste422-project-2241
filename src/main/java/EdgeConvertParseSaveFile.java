@@ -2,8 +2,6 @@ import java.io.*;
 import java.util.StringTokenizer;
 
 public class EdgeConvertParseSaveFile extends EdgeConvertFileParser {
-   private String currentLine;
-   private BufferedReader br;
    private String tableName;
    private String fieldName;
    private int numFigure, numFields, numTables;
@@ -76,4 +74,9 @@ public class EdgeConvertParseSaveFile extends EdgeConvertFileParser {
          alFields.add(tempField);
       }
    } // parseSaveFile()
+
+   @Override
+   protected void resolveConnectors() {
+      throw new UnsupportedOperationException("Unimplemented method 'resolveConnectors'");
+   }
 }
