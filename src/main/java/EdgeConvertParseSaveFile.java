@@ -12,7 +12,8 @@ public class EdgeConvertParseSaveFile extends EdgeConvertFileParser {
       super(constructorFile);
    }
 
-   public void parseSaveFile() throws IOException { //this method is unclear and confusing in places
+   @Override
+   public void parseFile() throws IOException { //this method is unclear and confusing in places
       // StringTokenizer stTables, stNatFields, stRelFields, stNatRelFields, stField;
       StringTokenizer stTables, stNatFields, stRelFields, stField;
       EdgeTable tempTable;
