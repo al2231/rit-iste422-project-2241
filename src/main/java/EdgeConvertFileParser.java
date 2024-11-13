@@ -7,7 +7,7 @@ import org.apache.logging.log4j.Logger;
 
 public abstract class EdgeConvertFileParser {
    //private String filename = "test.edg";
-   protected File parseFile; //changed from private to protected
+   //protected File parseFile; //changed from private to protected
    protected FileReader fr;
    protected BufferedReader br;
    protected String currentLine;
@@ -39,15 +39,15 @@ public abstract class EdgeConvertFileParser {
       alTables = new ArrayList();
       alFields = new ArrayList();
       alConnectors = new ArrayList();
-      parseFile = constructorFile;
+      File parseFile = constructorFile;
       this.openFile(parseFile);
 
       logger.info("EdgeConvertFileParser constructor called with constructorFile");
 
    }
 
-   public abstract void parseFile() throws IOException;
-   protected abstract void resolveConnectors();
+   public abstract void parseFile(File parseFile) throws IOException;
+   protected abstract void resolveConnectors(File parseFile);
 
    protected void makeArrays() { //convert ArrayList objects into arrays of the appropriate Class type
       logger.info("Converting ArrayList to arrays");
@@ -96,16 +96,16 @@ public abstract class EdgeConvertFileParser {
          if (currentLine.startsWith(EDGE_ID)) { //the file chosen is an Edge Diagrammer file
             logger.debug("Edge file found.");
             // EdgeConvertParseEdgeFile edgFile = new EdgeConvertParseEdgeFile(inputFile); //parse the file
-            this.parseFile();
+            this.parseFile(inputFile);
             br.close();
             this.makeArrays(); //convert ArrayList objects into arrays of the appropriate Class type
-            this.resolveConnectors(); //Identify nature of Connector endpoints
+            this.resolveConnectors(inputFile); //Identify nature of Connector endpoints
          } else {
             if (currentLine.startsWith(SAVE_ID)) { //the file chosen is a Save file created by this application
                logger.debug("Save file found");
                // EdgeConvertParseSaveFile savFile = new EdgeConvertParseSaveFile(inputFile); //parse the file
                //parse the file
-               this.parseFile();
+               this.parseFile(inputFile);
                br.close();
                this.makeArrays(); //convert ArrayList objects into arrays of the appropriate Class type
             } else { //the file chosen is something else

@@ -11,7 +11,7 @@ public class EdgeConvertParseSaveFile extends EdgeConvertFileParser {
    }
 
    @Override
-   public void parseFile() throws IOException { //this method is unclear and confusing in places
+   public void parseFile(File parseFile) throws IOException { //this method is unclear and confusing in places
       // StringTokenizer stTables, stNatFields, stRelFields, stNatRelFields, stField;
       StringTokenizer stTables, stNatFields, stRelFields, stField;
       EdgeTable tempTable;
@@ -76,7 +76,7 @@ public class EdgeConvertParseSaveFile extends EdgeConvertFileParser {
    } // parseSaveFile()
 
    @Override
-   protected void resolveConnectors() {
+   protected void resolveConnectors(File parseFile) {
       throw new UnsupportedOperationException("Unimplemented method 'resolveConnectors'");
    }
 }
