@@ -15,7 +15,7 @@ public class EdgeConvertParseEdgeFile extends EdgeConvertFileParser {
    }
 
    @Override
-   public void parseFile() throws IOException {
+   public void parseFile(File parseFile) throws IOException {
       logger.info("Parsing edge diagram file");
       while ((currentLine = br.readLine()) != null) {
          currentLine = currentLine.trim();
@@ -133,7 +133,7 @@ public class EdgeConvertParseEdgeFile extends EdgeConvertFileParser {
    } // parseEdgeFile()
 
    @Override
-   protected void resolveConnectors() { //Identify nature of Connector endpoints
+   protected void resolveConnectors(File parseFile) { //Identify nature of Connector endpoints
       int endPoint1, endPoint2;
       int fieldIndex = 0, table1Index = 0, table2Index = 0;
 
