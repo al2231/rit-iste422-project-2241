@@ -7,7 +7,7 @@ import org.apache.logging.log4j.Logger;
 
 public abstract class EdgeConvertFileParser {
    //private String filename = "test.edg";
-   //protected File parseFile; //changed from private to protected
+   //protected File parseFile;
    protected FileReader fr;
    protected BufferedReader br;
    protected String currentLine;
@@ -16,19 +16,8 @@ public abstract class EdgeConvertFileParser {
    protected ArrayList<EdgeConnector> alConnectors; //changes from private to protected
    protected EdgeTable[] tables;
    protected EdgeField[] fields;
-   // private EdgeField tempField;
    protected EdgeConnector[] connectors;
-   // private String style;
-   // private String text;
-   // private String tableName;
-   // private String fieldName;
-   // private boolean isEntity, isAttribute, isUnderlined = false;
-   // private int numFigure, numConnector;
-   // numFields, numTables, numNativeRelatedFields;
-   // private int endPoint1, endPoint2;
-   // private int numLine;
    protected int numFigure;
-   // private String endStyle1, endStyle2;
    public static final String EDGE_ID = "EDGE Diagram File"; //first line of .edg files should be this
    public static final String SAVE_ID = "EdgeConvert Save File"; //first line of save files should be this
    public static final String DELIM = "|";
@@ -95,7 +84,6 @@ public abstract class EdgeConvertFileParser {
          numLine++;
          if (currentLine.startsWith(EDGE_ID)) { //the file chosen is an Edge Diagrammer file
             logger.debug("Edge file found.");
-            // EdgeConvertParseEdgeFile edgFile = new EdgeConvertParseEdgeFile(inputFile); //parse the file
             this.parseFile(inputFile);
             br.close();
             this.makeArrays(); //convert ArrayList objects into arrays of the appropriate Class type
@@ -103,8 +91,6 @@ public abstract class EdgeConvertFileParser {
          } else {
             if (currentLine.startsWith(SAVE_ID)) { //the file chosen is a Save file created by this application
                logger.debug("Save file found");
-               // EdgeConvertParseSaveFile savFile = new EdgeConvertParseSaveFile(inputFile); //parse the file
-               //parse the file
                this.parseFile(inputFile);
                br.close();
                this.makeArrays(); //convert ArrayList objects into arrays of the appropriate Class type
