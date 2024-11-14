@@ -31,9 +31,9 @@ public class EdgeConvertFileParserTest {
     public void setUp() throws Exception {
         dummyEdgeFile = new File("Courses.edg");
         nonValidFile = new File("nonValidFile.txt");
-        dummySaveFile = new File("Dummy.sav");
+        dummySaveFile = new File("Courses.sav");
 
-        testObj = new EdgeConvertFileParser(dummyEdgeFile);
+        testObj = new EdgeConvertParseEdgeFile(dummyEdgeFile);
 
         // Initialize alTables with dummy data for isTableDup Section
         // EdgeTable[] dummyTables = new ArrayList<EdgeTable>(); //.makeArray()
@@ -99,6 +99,7 @@ public class EdgeConvertFileParserTest {
 
     @Test
     public void testValidSaveFile() {
+        testObj = new EdgeConvertParseSaveFile(dummySaveFile);
         testObj.openFile(dummySaveFile);
 
         assertNotNull("Tables populated with data", testObj.getEdgeTables());
@@ -134,7 +135,7 @@ public class EdgeConvertFileParserTest {
             // Thread dialogThread = new Thread(() -> {
             //     JOptionPane.showMessageDialog(null, "There are multiple tables called " + text + " in this diagram.\nPlease rename all but one of them and try again.");
             // });
-        testObj = new EdgeConvertFileParser(dummyEdgeFile);
+        testObj = new EdgeConvertParseEdgeFile(dummyEdgeFile);
         String text = "STUDENT";
 
         SwingUtilities.invokeAndWait(() -> {
@@ -173,7 +174,7 @@ public class EdgeConvertFileParserTest {
     // given attribute field, alFields should add a new EdgeField with isPrimaryKey set 
     @Test 
     public void testAttributeStyle() throws IOException{
-        testObj.parseEdgeFile();
+        testObj.parseFile(dummyEdgeFile);
         EdgeField[] dummyFields = testObj.getEdgeFields();
         assertNotNull("Fields should be populated", dummyFields);
         assertTrue("at least one key should be set", dummyFields[0].getIsPrimaryKey());
@@ -183,7 +184,7 @@ public class EdgeConvertFileParserTest {
     @Test
     public void testConnectorWithBothEndpoints() throws Exception {
         // testObj.parseEdgeFile();
-        EdgeConvertFileParser instance = new EdgeConvertFileParser(dummyEdgeFile);
+        EdgeConvertFileParser instance = new EdgeConvertParseEdgeFile(dummyEdgeFile);
         Field dummyCon = EdgeConvertFileParser.class.getDeclaredField("connectors");
         dummyCon.setAccessible(true);
         // EdgeConnector[] dummyCon = testObj.connectors; //getEdgeConnectors doesn't exist?
@@ -220,7 +221,8 @@ public class EdgeConvertFileParserTest {
     @Test
     public void testCorrectTableFormat() throws IOException {
         // setup - create table entry in correct format, creates a EdgeTable assigning it valid NativeFields, RelativeTables, and RelatedFields
-        testObj.parseSaveFile();
+        testObj = new EdgeConvertParseSaveFile(dummySaveFile);
+        testObj.parseFile(dummySaveFile);
         EdgeTable[] dummyTables = testObj.getEdgeTables();
         assertNotNull("Table should be created from correct format", dummyTables);
         assertTrue("Native fields should be assigned", dummyTables[0].getNativeFieldsArray().length > 0);
@@ -230,7 +232,8 @@ public class EdgeConvertFileParserTest {
     @Test 
     public void testCorrectFieldFormat() throws IOException {
         //  Given a field entry with correct format, create a new EdgeField and set all properties, including optional DefaultValue
-        testObj.parseSaveFile();
+        testObj = new EdgeConvertParseSaveFile(dummySaveFile);
+        testObj.parseFile(dummySaveFile);
         EdgeField[] dummyFields = testObj.getEdgeFields();
         assertNotNull("Fields should be in correct format", dummyFields);
         assertNotNull("Default value should be assigned if possible", dummyFields[0].getDefaultValue());
@@ -271,7 +274,7 @@ public class EdgeConvertFileParserTest {
         // boolean dummyName = testObj.isTableDup(exisitngTableName);
         // assertTrue("Table name already exists in file", dummyName);
 
-        EdgeConvertFileParser instance = new EdgeConvertFileParser(dummyEdgeFile);
+        EdgeConvertFileParser instance = new EdgeConvertParseEdgeFile(dummyEdgeFile);
         Method isTableDupMethod = EdgeConvertFileParser.class.getDeclaredMethod("isTableDup", String.class);
         isTableDupMethod.setAccessible(true);
         // EdgeConnector[] dummyCon = testObj.connectors; //getEdgeConnectors doesn't exist?
@@ -286,7 +289,7 @@ public class EdgeConvertFileParserTest {
     //     String newTableName = "dummyTableName";
     //     boolean dummyName = testObj.isTableDup(newTableName);
     //     assertFalse("Table does not currently exist in file", dummyName);
-        EdgeConvertFileParser instance = new EdgeConvertFileParser(dummyEdgeFile);
+        EdgeConvertFileParser instance = new EdgeConvertParseEdgeFile(dummyEdgeFile);
         Method isTableDupMethod = EdgeConvertFileParser.class.getDeclaredMethod("isTableDup", String.class);
         isTableDupMethod.setAccessible(true);
         // EdgeConnector[] dummyCon = testObj.connectors; //getEdgeConnectors doesn't exist?
