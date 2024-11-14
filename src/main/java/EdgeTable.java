@@ -5,7 +5,7 @@ import org.apache.logging.log4j.Logger;
 public class EdgeTable {
    private int numFigure;
    private String name;
-   private ArrayList alRelatedTables, alNativeFields;
+   private ArrayList<Integer> alRelatedTables, alNativeFields;
    private int[] relatedTables, relatedFields, nativeFields;
    private static final Logger logger = LogManager.getLogger(EdgeTable.class.getName());
    
@@ -29,7 +29,9 @@ public class EdgeTable {
    }
    
    public void addRelatedTable(int relatedTable) {
-      alRelatedTables.add(new Integer(relatedTable));
+      // first warning resolved
+      //alRelatedTables.add(new Integer(relatedTable));
+      alRelatedTables.add(Integer.valueOf(relatedTable));
       logger.info("EdgeTable add a related table: " + relatedTable);
    }
    
@@ -54,7 +56,9 @@ public class EdgeTable {
    }
 
    public void addNativeField(int value) {
-      alNativeFields.add(new Integer(value));
+      // second warning resolved
+      // alNativeFields.add(new Integer(value));
+      alNativeFields.add(Integer.valueOf(value));
       logger.debug("EdgeTable add a native field: " + value);
    }
 
